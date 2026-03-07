@@ -1,0 +1,10 @@
+{
+  "name": "flatow-furniture",
+  "version": "1.0.0",
+  "description": "Flatow Furniture — Custom furniture maker in San Francisco",
+  "scripts": {
+    "dev": "npx serve src -l 3000",
+    "build": "cp -r src dist"
+  },
+  "private": true
+}

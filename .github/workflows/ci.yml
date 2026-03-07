@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate HTML
+        uses: anishathalye/proof-html@v2
+        with:
+          directory: src
+          check_html: true
+          check_img_http: false
+          enforce_https: false
+          check_opengraph: false
+
+      - name: Check file structure
+        run: |
+          echo "Checking required files exist..."
+          test -f src/index.html && echo "✓ index.html"
+          test -f src/css/styles.css && echo "✓ styles.css"
+          test -f src/js/main.js && echo "✓ main.js"
+          test -d src/images && echo "✓ images directory"
+          echo "All checks passed!"
