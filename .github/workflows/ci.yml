@@ -75,7 +75,7 @@ jobs:
       - name: Run PageSpeed Insights
         run: |
           set +e
-          SITE_URL="https://flatow-furniture-site.netlify.app/"
+          SITE_URL="https://flatowfurniture.netlify.app/"
           API_BASE="https://www.googleapis.com/pagespeedonline/v5/runPagespeed"
           API_KEY="${{ secrets.PAGESPEED_API_KEY }}"
 
