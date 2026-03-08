@@ -1,2 +1,15 @@
 [build]
   publish = "src"
+
+# Redirect old domain to new primary domain
+[[redirects]]
+  from = "https://flatow.furniture/*"
+  to = "https://flatowfurniture.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.flatow.furniture/*"
+  to = "https://flatowfurniture.com/:splat"
+  status = 301
+  force = true
