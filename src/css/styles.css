@@ -720,8 +720,16 @@ cite {
     height: 60vh;
   }
 
+  .header-inner {
+    justify-content: center;
+  }
+
+  .logo-link {
+    position: static;
+  }
+
   .logo {
-    height: 50px;
+    height: 60px;
   }
 
   .section-title {

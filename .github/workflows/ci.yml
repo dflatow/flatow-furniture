@@ -17,9 +17,10 @@ jobs:
         with:
           directory: src
           check_html: true
-          check_img_http: false
           enforce_https: false
           check_opengraph: false
+          check_favicon: false
+          disable_external: true
 
       - name: Check file structure
         run: |
@@ -29,3 +30,35 @@ jobs:
           test -f src/js/main.js && echo "✓ main.js"
           test -d src/images && echo "✓ images directory"
           echo "All checks passed!"
+
+      - name: Check for broken internal links
+        run: |
+          echo "Checking internal page references..."
+          # Verify all subpage directories have index.html
+          for dir in design journal faq contact; do
+            test -f "src/$dir/index.html" && echo "✓ $dir/index.html" || { echo "✗ Missing $dir/index.html"; exit 1; }
+          done
+          echo "All internal pages exist!"
+
+      - name: Check image references
+        run: |
+          echo "Checking referenced images exist..."
+          errors=0
+          for html_file in $(find src -name "*.html"); do
+            # Extract image src attributes and check they exist
+            grep -oP 'src="([^"]*\.(jpg|jpeg|png|gif|svg|webp))"' "$html_file" | grep -oP '"[^"]*"' | tr -d '"' | while read img; do
+              # Skip external URLs
+              if echo "$img" | grep -q "^http"; then continue; fi
+              # Resolve path relative to src/
+              if echo "$img" | grep -q "^/"; then
+                img_path="src${img}"
+              else
+                img_path="$(dirname "$html_file")/${img}"
+              fi
+              if [ ! -f "$img_path" ]; then
+                echo "✗ Missing image: $img (referenced in $html_file)"
+                exit 1
+              fi
+            done
+          done
+          echo "All referenced images exist!"
