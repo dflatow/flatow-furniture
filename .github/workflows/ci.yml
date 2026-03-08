@@ -26,8 +26,8 @@ jobs:
         run: |
           echo "Checking required files exist..."
           test -f src/index.html && echo "✓ index.html"
-          test -f src/css/styles.css && echo "✓ styles.css"
-          test -f src/js/main.js && echo "✓ main.js"
+          test -f src/css/styles.min.css && echo "✓ styles.min.css"
+          test -f src/js/main.min.js && echo "✓ main.min.js"
           test -d src/images && echo "✓ images directory"
           echo "All checks passed!"
 

@@ -5,11 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Custom Made Furniture in San Francisco | Flatow Furniture</title>
   <meta name="description" content="Custom furniture and built-ins handcrafted in San Francisco by David Flatow. Dining tables, cabinets, shelving, wardrobes, and one-of-a-kind pieces.">
+  <link rel="preload" as="image" type="image/webp" imagesrcset="images/hero-800w.webp 800w, images/hero-1200w.webp 1200w, images/hero-1800w.webp 1800w, images/hero.webp 2500w" imagesizes="100vw" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preload" as="style" href="css/styles.min.css" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="css/styles.min.css"></noscript>
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{--color-bg:#f3efe8;--color-bg-white:#faf8f5;--color-text:#2c2825;--color-text-light:#8a7a5e;--color-border:rgba(100,90,70,0.2);--color-accent:#8a7a5e;--font-display:'Cormorant Garamond',Georgia,serif;--font-body:'Jost','Helvetica Neue',sans-serif;--header-height:80px}
+    html{scroll-behavior:smooth;scroll-padding-top:var(--header-height)}
+    body{font-family:var(--font-body);font-weight:300;color:var(--color-text);background-color:var(--color-bg);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}
+    img{display:block;max-width:100%;height:auto}
+    a{color:inherit;text-decoration:none}
+    .site-header{position:fixed;top:0;left:0;right:0;z-index:100;background:linear-gradient(180deg,rgba(40,35,30,0.85) 0%,rgba(40,35,30,0.4) 70%,transparent 100%);padding:30px 40px 20px;transition:background 0.3s ease}
+    .header-inner{position:relative;z-index:100;display:flex;align-items:center;justify-content:center;max-width:1400px;margin:0 auto}
+    .logo-link{position:absolute;left:0;flex-shrink:0}
+    .logo{height:90px;width:auto}
+    .main-nav{display:inline-flex;flex-wrap:wrap;justify-content:center;gap:28px;align-items:center}
+    .main-nav a{font-family:var(--font-display);font-style:italic;font-weight:400;font-size:1.35rem;color:#fff;letter-spacing:0.02em;transition:opacity 0.3s ease}
+    .menu-toggle{display:none;position:absolute;right:0;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;padding:10px}
+    .menu-icon,.menu-icon::before,.menu-icon::after{display:block;width:24px;height:2px;background:#fff;transition:transform 0.3s ease}
+    .menu-icon{position:relative}
+    .menu-icon::before,.menu-icon::after{content:'';position:absolute;left:0}
+    .menu-icon::before{top:-7px}
+    .menu-icon::after{top:7px}
+    .mobile-nav{display:none;position:fixed;inset:0;z-index:99;background:#2c2825;flex-direction:column;align-items:center;justify-content:center;gap:28px}
+    .mobile-nav.open{display:flex}
+    .mobile-nav a{font-family:var(--font-display);font-style:italic;font-weight:400;font-size:1.8rem;color:#fff}
+    body.menu-open{overflow:hidden}
+    .hero{width:100%;height:100vh;overflow:hidden;position:relative}
+    .hero-image{width:100%;height:100%;object-fit:cover;object-position:center}
+    @media(max-width:900px){.main-nav{display:none}.menu-toggle{display:block}.site-header{padding:30px 24px 16px}}
+    @media(max-width:600px){.hero{height:60vh}.header-inner{justify-content:center}.logo-link{position:static}.logo{height:60px}}
+  </style>
 </head>
 <body>
   <!-- Header -->
@@ -285,6 +315,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.min.js"></script>
 </body>
 </html>
