@@ -63,6 +63,7 @@ a {
 
 .header-inner {
   position: relative;
+  z-index: 100;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -107,6 +108,8 @@ a {
   display: none;
   position: absolute;
   right: 0;
+  top: 50%;
+  transform: translateY(-50%);
   background: none;
   border: none;
   cursor: pointer;
@@ -158,10 +161,14 @@ a {
 
 .mobile-nav {
   display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background: #2c2825;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
-  padding: 20px 0 30px;
+  justify-content: center;
+  gap: 28px;
 }
 
 .mobile-nav.open {
@@ -172,8 +179,12 @@ a {
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
-  font-size: 1.2rem;
+  font-size: 1.8rem;
   color: #fff;
+}
+
+body.menu-open {
+  overflow: hidden;
 }
 
 /* --- Hero --- */
@@ -656,7 +667,7 @@ cite {
   }
 
   .site-header {
-    padding: 16px 24px;
+    padding: 30px 24px 16px;
   }
 
   .intro-grid,

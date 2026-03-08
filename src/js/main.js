@@ -20,12 +20,14 @@ function initMobileMenu() {
     const isOpen = toggle.getAttribute('aria-expanded') === 'true';
     toggle.setAttribute('aria-expanded', !isOpen);
     mobileNav.classList.toggle('open');
+    document.body.classList.toggle('menu-open');
   });
 
   mobileNav.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       toggle.setAttribute('aria-expanded', 'false');
       mobileNav.classList.remove('open');
+      document.body.classList.remove('menu-open');
     });
   });
 }
