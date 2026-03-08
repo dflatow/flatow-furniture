@@ -62,16 +62,17 @@ a {
 }
 
 .header-inner {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
   max-width: 1400px;
   margin: 0 auto;
-  gap: 30px;
 }
 
 .logo-link {
+  position: absolute;
+  left: 0;
   flex-shrink: 0;
 }
 
