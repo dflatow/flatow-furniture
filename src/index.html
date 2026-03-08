@@ -7,7 +7,8 @@
   <meta name="description" content="Custom furniture and built-ins handcrafted in San Francisco by David Flatow. Dining tables, cabinets, shelving, wardrobes, and one-of-a-kind pieces.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -15,7 +16,7 @@
   <header class="site-header" id="top">
     <div class="header-inner">
       <a href="/" class="logo-link">
-        <img src="images/logo/white-logo.png" alt="Flatow Furniture" class="logo">
+        <img src="images/logo/white-logo.png" alt="Flatow Furniture" class="logo" width="449" height="270">
       </a>
       <nav class="main-nav" aria-label="Main navigation">
         <a href="#gallery">Gallery</a>
@@ -43,7 +44,7 @@
   <main id="page">
     <!-- Hero Section -->
     <section class="hero">
-      <img src="images/hero.jpeg" alt="Custom white oak and cherry dining table by Flatow Furniture" class="hero-image">
+      <picture><source srcset="images/hero.webp" type="image/webp"><img src="images/hero.jpeg" alt="Custom white oak and cherry dining table by Flatow Furniture" class="hero-image" fetchpriority="high" width="2500" height="1667"></picture>
     </section>
 
     <!-- Intro Section -->
@@ -59,7 +60,7 @@
           <a href="mailto:inquire@flatow.furniture" class="email-link">inquire@flatow.furniture</a>
         </div>
         <div class="intro-image">
-          <img src="images/gallery/cabinet-intro.jpeg" alt="A handmade wall-hung walnut and beech cabinet" loading="lazy">
+          <picture><source srcset="images/gallery/cabinet-intro.webp" type="image/webp"><img src="images/gallery/cabinet-intro.jpeg" alt="A handmade wall-hung walnut and beech cabinet" loading="lazy" width="1776" height="1184"></picture>
         </div>
       </div>
     </section>
@@ -77,13 +78,13 @@
         <div class="carousel" data-carousel>
           <div class="carousel-track">
             <div class="carousel-slide active">
-              <img src="images/gallery/table-1.jpeg" alt="A round wooden table with three curved legs in a workshop, illuminated by sunlight and shadows" loading="lazy">
+              <picture><source srcset="images/gallery/table-1.webp" type="image/webp"><img src="images/gallery/table-1.jpeg" alt="A round wooden table with three curved legs in a workshop, illuminated by sunlight and shadows" loading="lazy" width="1500" height="1000"></picture>
             </div>
             <div class="carousel-slide">
-              <img src="images/gallery/table-2.jpeg" alt="Close-up of a round white oak table with sunlight casting striped shadows across its surface" loading="lazy">
+              <picture><source srcset="images/gallery/table-2.webp" type="image/webp"><img src="images/gallery/table-2.jpeg" alt="Close-up of a round white oak table with sunlight casting striped shadows across its surface" loading="lazy" width="1500" height="1000"></picture>
             </div>
             <div class="carousel-slide">
-              <img src="images/gallery/table-3.jpeg" alt="Close-up of curved table legs and part of the seat with shadow cast on a workshop floor" loading="lazy">
+              <picture><source srcset="images/gallery/table-3.webp" type="image/webp"><img src="images/gallery/table-3.jpeg" alt="Close-up of curved table legs and part of the seat with shadow cast on a workshop floor" loading="lazy" width="1500" height="1000"></picture>
             </div>
           </div>
           <button class="carousel-btn prev" aria-label="Previous image">&larr;</button>
@@ -101,13 +102,13 @@
         <div class="carousel" data-carousel>
           <div class="carousel-track">
             <div class="carousel-slide active">
-              <img src="images/gallery/cabinet-1.jpeg" alt="A walnut cabinet with open and closed compartments in a woodworking shop" loading="lazy">
+              <picture><source srcset="images/gallery/cabinet-1.webp" type="image/webp"><img src="images/gallery/cabinet-1.jpeg" alt="A walnut cabinet with open and closed compartments in a woodworking shop" loading="lazy" width="1500" height="1000"></picture>
             </div>
             <div class="carousel-slide">
-              <img src="images/gallery/cabinet-2.jpeg" alt="A walnut wood cabinet with multiple compartments and shelves" loading="lazy">
+              <picture><source srcset="images/gallery/cabinet-2.webp" type="image/webp"><img src="images/gallery/cabinet-2.jpeg" alt="A walnut wood cabinet with multiple compartments and shelves" loading="lazy" width="1500" height="1000"></picture>
             </div>
             <div class="carousel-slide">
-              <img src="images/gallery/cabinet-3.jpeg" alt="Close-up of a wooden cabinet with open shelves and closed door" loading="lazy">
+              <picture><source srcset="images/gallery/cabinet-3.webp" type="image/webp"><img src="images/gallery/cabinet-3.jpeg" alt="Close-up of a wooden cabinet with open shelves and closed door" loading="lazy" width="1500" height="1000"></picture>
             </div>
           </div>
           <button class="carousel-btn prev" aria-label="Previous image">&larr;</button>
@@ -125,13 +126,13 @@
         <div class="carousel" data-carousel>
           <div class="carousel-track">
             <div class="carousel-slide active">
-              <img src="images/gallery/bench-1.jpg" alt="Custom bench in mahogany front view" loading="lazy">
+              <picture><source srcset="images/gallery/bench-1.webp" type="image/webp"><img src="images/gallery/bench-1.jpg" alt="Custom bench in mahogany front view" loading="lazy" width="750" height="750"></picture>
             </div>
             <div class="carousel-slide">
-              <img src="images/gallery/bench-2.jpg" alt="Custom mahogany bench top side view" loading="lazy">
+              <picture><source srcset="images/gallery/bench-2.webp" type="image/webp"><img src="images/gallery/bench-2.jpg" alt="Custom mahogany bench top side view" loading="lazy" width="750" height="750"></picture>
             </div>
             <div class="carousel-slide">
-              <img src="images/gallery/bench-3.jpg" alt="Bench corner detail photo" loading="lazy">
+              <picture><source srcset="images/gallery/bench-3.webp" type="image/webp"><img src="images/gallery/bench-3.jpg" alt="Bench corner detail photo" loading="lazy" width="750" height="750"></picture>
             </div>
           </div>
           <button class="carousel-btn prev" aria-label="Previous image">&larr;</button>
@@ -149,13 +150,13 @@
         <div class="carousel" data-carousel>
           <div class="carousel-track">
             <div class="carousel-slide active">
-              <img src="images/gallery/desk-1.jpeg" alt="Close-up of a smooth, polished madrone surface in a woodworking shop" loading="lazy">
+              <picture><source srcset="images/gallery/desk-1.webp" type="image/webp"><img src="images/gallery/desk-1.jpeg" alt="Close-up of a smooth, polished madrone surface in a woodworking shop" loading="lazy" width="1086" height="724"></picture>
             </div>
             <div class="carousel-slide">
-              <img src="images/gallery/desk-2.jpeg" alt="Close-up of a madrone desk with a circular replaceable wooden plug" loading="lazy">
+              <picture><source srcset="images/gallery/desk-2.webp" type="image/webp"><img src="images/gallery/desk-2.jpeg" alt="Close-up of a madrone desk with a circular replaceable wooden plug" loading="lazy" width="1086" height="724"></picture>
             </div>
             <div class="carousel-slide">
-              <img src="images/gallery/desk-3.jpeg" alt="Close-up of a madrone table on sawhorses" loading="lazy">
+              <picture><source srcset="images/gallery/desk-3.webp" type="image/webp"><img src="images/gallery/desk-3.jpeg" alt="Close-up of a madrone table on sawhorses" loading="lazy" width="1086" height="724"></picture>
             </div>
           </div>
           <button class="carousel-btn prev" aria-label="Previous image">&larr;</button>
@@ -228,7 +229,7 @@
           <p>I work closely with clients in the Bay Area, through a creative back and forth to design around their spaces and lives. I pay special attention to provide an experience and process that's as high quality as the pieces themselves. Each piece is personally built by me in my shop in San Francisco from high quality materials with traditional techniques and aided by modern tools.</p>
         </div>
         <div class="about-image">
-          <img src="images/about/david-portrait.jpeg" alt="A portrait of David Flatow in his workshop" loading="lazy">
+          <picture><source srcset="images/about/david-portrait.webp" type="image/webp"><img src="images/about/david-portrait.jpeg" alt="A portrait of David Flatow in his workshop" loading="lazy" width="1500" height="1000"></picture>
         </div>
       </div>
     </section>
@@ -242,22 +243,22 @@
       </div>
       <div class="social-grid">
         <a href="https://www.instagram.com/flatow.furniture/" target="_blank" rel="noopener noreferrer" class="social-item">
-          <img src="images/social/social-1.jpeg" alt="Workshop process photo" loading="lazy">
+          <picture><source srcset="images/social/social-1.webp" type="image/webp"><img src="images/social/social-1.jpeg" alt="Workshop process photo" loading="lazy" width="640" height="1136"></picture>
         </a>
         <a href="https://www.instagram.com/flatow.furniture/" target="_blank" rel="noopener noreferrer" class="social-item">
-          <img src="images/social/social-2.jpeg" alt="Workshop process photo" loading="lazy">
+          <picture><source srcset="images/social/social-2.webp" type="image/webp"><img src="images/social/social-2.jpeg" alt="Workshop process photo" loading="lazy" width="640" height="1136"></picture>
         </a>
         <a href="https://www.instagram.com/flatow.furniture/" target="_blank" rel="noopener noreferrer" class="social-item">
-          <img src="images/social/social-3.jpeg" alt="White oak and cherry dining table" loading="lazy">
+          <picture><source srcset="images/social/social-3.webp" type="image/webp"><img src="images/social/social-3.jpeg" alt="White oak and cherry dining table" loading="lazy" width="750" height="584"></picture>
         </a>
         <a href="https://www.instagram.com/flatow.furniture/" target="_blank" rel="noopener noreferrer" class="social-item">
-          <img src="images/social/social-4.jpeg" alt="Workshop process photo" loading="lazy">
+          <picture><source srcset="images/social/social-4.webp" type="image/webp"><img src="images/social/social-4.jpeg" alt="Workshop process photo" loading="lazy" width="640" height="1138"></picture>
         </a>
         <a href="https://www.instagram.com/flatow.furniture/" target="_blank" rel="noopener noreferrer" class="social-item">
-          <img src="images/social/social-5.jpeg" alt="Furniture making process" loading="lazy">
+          <picture><source srcset="images/social/social-5.webp" type="image/webp"><img src="images/social/social-5.jpeg" alt="Furniture making process" loading="lazy" width="640" height="1136"></picture>
         </a>
         <a href="https://www.instagram.com/flatow.furniture/" target="_blank" rel="noopener noreferrer" class="social-item">
-          <img src="images/social/social-6.jpeg" alt="Workshop detail" loading="lazy">
+          <picture><source srcset="images/social/social-6.webp" type="image/webp"><img src="images/social/social-6.jpeg" alt="Workshop detail" loading="lazy" width="640" height="1136"></picture>
         </a>
       </div>
     </section>
@@ -275,7 +276,7 @@
         <p>San Francisco, CA</p>
       </div>
       <div class="footer-logo">
-        <img src="images/logo/dark-logo.png" alt="Flatow Furniture" loading="lazy">
+        <img src="images/logo/dark-logo.png" alt="Flatow Furniture" loading="lazy" width="449" height="270">
       </div>
       <div class="footer-contact">
         <h3>Contact</h3>
