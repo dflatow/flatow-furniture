@@ -67,83 +67,72 @@ jobs:
     runs-on: ubuntu-latest
     needs: lint-and-validate
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    continue-on-error: true
     steps:
       - name: Wait for Netlify deploy
         run: sleep 30
 
-      - name: Run PageSpeed Insights (Mobile)
+      - name: Run PageSpeed Insights
         run: |
-          echo "## PageSpeed Insights — Mobile" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
+          set +e
+          SITE_URL="https://flatow-furniture-site.netlify.app/"
+          API_BASE="https://www.googleapis.com/pagespeedonline/v5/runPagespeed"
+          API_KEY="${{ secrets.PAGESPEED_API_KEY }}"
 
-          RESPONSE=$(curl -s "https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=https://flatow-furniture-site.netlify.app/&strategy=mobile&category=performance&category=accessibility&category=best-practices&category=seo")
+          run_pagespeed() {
+            local strategy=$1
+            local url="${API_BASE}?url=${SITE_URL}&strategy=${strategy}&category=performance&category=accessibility&category=best-practices&category=seo"
+            if [ -n "$API_KEY" ]; then
+              url="${url}&key=${API_KEY}"
+            fi
 
-          PERF=$(echo "$RESPONSE" | jq '.lighthouseResult.categories.performance.score * 100 | round')
-          A11Y=$(echo "$RESPONSE" | jq '.lighthouseResult.categories.accessibility.score * 100 | round')
-          BP=$(echo "$RESPONSE" | jq '(.lighthouseResult.categories["best-practices"].score // 0) * 100 | round')
-          SEO=$(echo "$RESPONSE" | jq '.lighthouseResult.categories.seo.score * 100 | round')
+            RESPONSE=$(curl -s --max-time 120 "$url")
 
-          FCP=$(echo "$RESPONSE" | jq -r '.lighthouseResult.audits["first-contentful-paint"].displayValue')
-          LCP=$(echo "$RESPONSE" | jq -r '.lighthouseResult.audits["largest-contentful-paint"].displayValue')
-          TBT=$(echo "$RESPONSE" | jq -r '.lighthouseResult.audits["total-blocking-time"].displayValue')
-          CLS=$(echo "$RESPONSE" | jq -r '.lighthouseResult.audits["cumulative-layout-shift"].displayValue')
-          SI=$(echo "$RESPONSE" | jq -r '.lighthouseResult.audits["speed-index"].displayValue')
+            # Check for API error
+            ERROR=$(echo "$RESPONSE" | jq -r '.error.message // empty')
+            if [ -n "$ERROR" ]; then
+              echo "## PageSpeed Insights — ${strategy^}" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "> API error: ${ERROR}" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "PageSpeed ${strategy}: API error - ${ERROR}"
+              return
+            fi
 
-          echo "| Category | Score |" >> $GITHUB_STEP_SUMMARY
-          echo "|----------|-------|" >> $GITHUB_STEP_SUMMARY
-          echo "| Performance | **$PERF** |" >> $GITHUB_STEP_SUMMARY
-          echo "| Accessibility | **$A11Y** |" >> $GITHUB_STEP_SUMMARY
-          echo "| Best Practices | **$BP** |" >> $GITHUB_STEP_SUMMARY
-          echo "| SEO | **$SEO** |" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
-          echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
-          echo "| First Contentful Paint | $FCP |" >> $GITHUB_STEP_SUMMARY
-          echo "| Largest Contentful Paint | $LCP |" >> $GITHUB_STEP_SUMMARY
-          echo "| Total Blocking Time | $TBT |" >> $GITHUB_STEP_SUMMARY
-          echo "| Cumulative Layout Shift | $CLS |" >> $GITHUB_STEP_SUMMARY
-          echo "| Speed Index | $SI |" >> $GITHUB_STEP_SUMMARY
+            PERF=$(echo "$RESPONSE" | jq '(.lighthouseResult.categories.performance.score // 0) * 100 | round')
+            A11Y=$(echo "$RESPONSE" | jq '(.lighthouseResult.categories.accessibility.score // 0) * 100 | round')
+            BP=$(echo "$RESPONSE" | jq '(.lighthouseResult.categories["best-practices"].score // 0) * 100 | round')
+            SEO=$(echo "$RESPONSE" | jq '(.lighthouseResult.categories.seo.score // 0) * 100 | round')
 
+            FCP=$(echo "$RESPONSE" | jq -r '.lighthouseResult.audits["first-contentful-paint"].displayValue // "N/A"')
+            LCP=$(echo "$RESPONSE" | jq -r '.lighthouseResult.audits["largest-contentful-paint"].displayValue // "N/A"')
+            TBT=$(echo "$RESPONSE" | jq -r '.lighthouseResult.audits["total-blocking-time"].displayValue // "N/A"')
+            CLS=$(echo "$RESPONSE" | jq -r '.lighthouseResult.audits["cumulative-layout-shift"].displayValue // "N/A"')
+            SI=$(echo "$RESPONSE" | jq -r '.lighthouseResult.audits["speed-index"].displayValue // "N/A"')
+
+            echo "## PageSpeed Insights — ${strategy^}" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "| Category | Score |" >> $GITHUB_STEP_SUMMARY
+            echo "|----------|-------|" >> $GITHUB_STEP_SUMMARY
+            echo "| Performance | **$PERF** |" >> $GITHUB_STEP_SUMMARY
+            echo "| Accessibility | **$A11Y** |" >> $GITHUB_STEP_SUMMARY
+            echo "| Best Practices | **$BP** |" >> $GITHUB_STEP_SUMMARY
+            echo "| SEO | **$SEO** |" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
+            echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+            echo "| First Contentful Paint | $FCP |" >> $GITHUB_STEP_SUMMARY
+            echo "| Largest Contentful Paint | $LCP |" >> $GITHUB_STEP_SUMMARY
+            echo "| Total Blocking Time | $TBT |" >> $GITHUB_STEP_SUMMARY
+            echo "| Cumulative Layout Shift | $CLS |" >> $GITHUB_STEP_SUMMARY
+            echo "| Speed Index | $SI |" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+
+            echo "=== PageSpeed ${strategy^} ==="
+            echo "Performance: $PERF | Accessibility: $A11Y | Best Practices: $BP | SEO: $SEO"
+            echo "FCP: $FCP | LCP: $LCP | TBT: $TBT | CLS: $CLS | SI: $SI"
+          }
+
+          run_pagespeed "mobile"
           echo ""
-          echo "=== PageSpeed Mobile Results ==="
-          echo "Performance: $PERF | Accessibility: $A11Y | Best Practices: $BP | SEO: $SEO"
-          echo "FCP: $FCP | LCP: $LCP | TBT: $TBT | CLS: $CLS | SI: $SI"
-
-      - name: Run PageSpeed Insights (Desktop)
-        run: |
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "## PageSpeed Insights — Desktop" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-
-          RESPONSE=$(curl -s "https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=https://flatow-furniture-site.netlify.app/&strategy=desktop&category=performance&category=accessibility&category=best-practices&category=seo")
-
-          PERF=$(echo "$RESPONSE" | jq '.lighthouseResult.categories.performance.score * 100 | round')
-          A11Y=$(echo "$RESPONSE" | jq '.lighthouseResult.categories.accessibility.score * 100 | round')
-          BP=$(echo "$RESPONSE" | jq '(.lighthouseResult.categories["best-practices"].score // 0) * 100 | round')
-          SEO=$(echo "$RESPONSE" | jq '.lighthouseResult.categories.seo.score * 100 | round')
-
-          FCP=$(echo "$RESPONSE" | jq -r '.lighthouseResult.audits["first-contentful-paint"].displayValue')
-          LCP=$(echo "$RESPONSE" | jq -r '.lighthouseResult.audits["largest-contentful-paint"].displayValue')
-          TBT=$(echo "$RESPONSE" | jq -r '.lighthouseResult.audits["total-blocking-time"].displayValue')
-          CLS=$(echo "$RESPONSE" | jq -r '.lighthouseResult.audits["cumulative-layout-shift"].displayValue')
-          SI=$(echo "$RESPONSE" | jq -r '.lighthouseResult.audits["speed-index"].displayValue')
-
-          echo "| Category | Score |" >> $GITHUB_STEP_SUMMARY
-          echo "|----------|-------|" >> $GITHUB_STEP_SUMMARY
-          echo "| Performance | **$PERF** |" >> $GITHUB_STEP_SUMMARY
-          echo "| Accessibility | **$A11Y** |" >> $GITHUB_STEP_SUMMARY
-          echo "| Best Practices | **$BP** |" >> $GITHUB_STEP_SUMMARY
-          echo "| SEO | **$SEO** |" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
-          echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
-          echo "| First Contentful Paint | $FCP |" >> $GITHUB_STEP_SUMMARY
-          echo "| Largest Contentful Paint | $LCP |" >> $GITHUB_STEP_SUMMARY
-          echo "| Total Blocking Time | $TBT |" >> $GITHUB_STEP_SUMMARY
-          echo "| Cumulative Layout Shift | $CLS |" >> $GITHUB_STEP_SUMMARY
-          echo "| Speed Index | $SI |" >> $GITHUB_STEP_SUMMARY
-
-          echo ""
-          echo "=== PageSpeed Desktop Results ==="
-          echo "Performance: $PERF | Accessibility: $A11Y | Best Practices: $BP | SEO: $SEO"
-          echo "FCP: $FCP | LCP: $LCP | TBT: $TBT | CLS: $CLS | SI: $SI"
+          run_pagespeed "desktop"
