@@ -11,6 +11,21 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: 'Flatow Hand';
+  src: url('/fonts/FlatowHand-Regular.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Flatow Hand';
+  src: url('/fonts/FlatowHand-Regular.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
 :root {
   --color-bg: #f3efe8;
   --color-bg-white: #faf8f5;
@@ -18,7 +33,7 @@
   --color-text-light: #8a7a5e;
   --color-border: rgba(100, 90, 70, 0.2);
   --color-accent: #8a7a5e;
-  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-display: 'Flatow Hand', 'Cormorant Garamond', Georgia, serif;
   --font-body: 'Jost', 'Helvetica Neue', sans-serif;
   --header-height: 80px;
 }
