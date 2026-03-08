@@ -628,7 +628,7 @@ cite {
   text-align: center;
 }
 
-.footer-grid h3 {
+.footer-heading {
   font-family: var(--font-display);
   font-weight: 300;
   font-style: italic;

@@ -3,29 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact | Flatow Furniture</title>
-  <meta name="description" content="Get in touch with Flatow Furniture for custom furniture and built-ins in San Francisco.">
+  <title>Page Not Found | Flatow Furniture</title>
+  <meta name="description" content="The page you're looking for seems to have gone missing.">
   <link rel="icon" type="image/x-icon" href="/images/favicon/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
-  <link rel="canonical" href="https://flatowfurniture.com/contact/">
-  <meta property="og:title" content="Contact | Flatow Furniture">
-  <meta property="og:description" content="Get in touch with Flatow Furniture for custom furniture and built-ins in San Francisco.">
-  <meta property="og:image" content="https://flatowfurniture.com/images/hero-1200w.jpeg">
-  <meta property="og:url" content="https://flatowfurniture.com/contact/">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Flatow Furniture">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Contact | Flatow Furniture">
-  <meta name="twitter:description" content="Get in touch with Flatow Furniture for custom furniture and built-ins in San Francisco.">
-  <meta name="twitter:image" content="https://flatowfurniture.com/images/hero-1200w.jpeg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="/css/styles.min.css">
-  <link rel="stylesheet" href="/css/pages.css">
+  <style>
+    .error-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 24px;
+      padding-top: calc(var(--header-height) + 40px);
+    }
+    .error-code {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-style: italic;
+      font-size: 8rem;
+      line-height: 1;
+      color: var(--color-text-light);
+      margin-bottom: 16px;
+    }
+    .error-title {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-style: italic;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    .error-message {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      max-width: 480px;
+      margin-bottom: 40px;
+      color: var(--color-text);
+    }
+    .error-home {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.2rem;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      transition: opacity 0.3s ease;
+    }
+    .error-home:hover {
+      opacity: 0.7;
+    }
+    @media (max-width: 600px) {
+      .error-code { font-size: 5rem; }
+      .error-title { font-size: 1.5rem; }
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -39,7 +77,7 @@
         <a href="/#about">About</a>
         <a href="/journal">Journal</a>
         <a href="/faq">FAQ</a>
-        <a href="/contact" class="active">Contact</a>
+        <a href="/contact">Contact</a>
       </nav>
       <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
         <span class="menu-icon"></span>
@@ -51,30 +89,15 @@
       <a href="/#about">About</a>
       <a href="/journal">Journal</a>
       <a href="/faq">FAQ</a>
-      <a href="/contact" class="active">Contact</a>
+      <a href="/contact">Contact</a>
     </nav>
   </header>
 
-  <main id="page">
-    <section class="page-hero">
-      <picture><source srcset="/images/hero-800w.webp 800w, /images/hero-1200w.webp 1200w, /images/hero-1800w.webp 1800w, /images/hero.webp 2500w" sizes="100vw" type="image/webp"><img src="/images/hero.jpeg" alt="Flatow Furniture workshop" class="page-hero-image" srcset="/images/hero-800w.jpeg 800w, /images/hero-1200w.jpeg 1200w, /images/hero-1800w.jpeg 1800w, /images/hero.jpeg 2500w" sizes="100vw" width="2500" height="1667"></picture>
-    </section>
-
-    <section class="page-content">
-      <h1 class="section-title">Contact</h1>
-      <div class="page-body narrow">
-        <p>Flatow Furniture designs and builds made-to-order furniture for clients across San Francisco, Berkeley, Oakland, San Jose, and Marin County.</p>
-        <p>If you have an idea for a piece of custom furniture or built-ins, feel free to reach out. Share a few details about your project, and I'll get back to you soon.</p>
-        <p class="contact-email">
-          <a href="mailto:inquire@flatow.furniture" class="email-link">inquire@flatow.furniture</a>
-        </p>
-        <div class="contact-address">
-          <h2>Studio Location</h2>
-          <p>1501 Cortland Ave</p>
-          <p>San Francisco, California</p>
-        </div>
-      </div>
-    </section>
+  <main class="error-page">
+    <div class="error-code">404</div>
+    <h1 class="error-title">This page wandered off like a missing chisel.</h1>
+    <p class="error-message">You know that feeling when you set a tool down for just a second and it vanishes into thin air? That's what happened here. The page you're looking for isn't where it should be.</p>
+    <a href="/" class="error-home">Back to the workshop</a>
   </main>
 
   <footer class="site-footer">
