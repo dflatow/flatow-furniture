@@ -64,9 +64,11 @@ a {
 .header-inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  flex-wrap: wrap;
   max-width: 1400px;
   margin: 0 auto;
+  gap: 30px;
 }
 
 .logo-link {
@@ -74,12 +76,14 @@ a {
 }
 
 .logo {
-  height: 50px;
+  height: 90px;
   width: auto;
 }
 
 .main-nav {
-  display: flex;
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 28px;
   align-items: center;
 }
@@ -88,7 +92,7 @@ a {
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
-  font-size: 1.1rem;
+  font-size: 1.35rem;
   color: #fff;
   letter-spacing: 0.02em;
   transition: opacity 0.3s ease;
@@ -230,7 +234,7 @@ a {
   font-family: var(--font-display);
   font-weight: 300;
   font-style: italic;
-  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-size: clamp(2.4rem, 5vw, 3.7rem);
   line-height: 1.2;
   color: var(--color-text);
   letter-spacing: -0.01em;
@@ -722,11 +726,11 @@ cite {
   }
 
   .logo {
-    height: 36px;
+    height: 50px;
   }
 
   .section-title {
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
 
   .social-grid {
