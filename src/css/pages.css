@@ -50,6 +50,12 @@
   max-width: 1300px;
 }
 
+.about-page .about-image {
+  position: sticky;
+  top: 80px;
+  align-self: start;
+}
+
 .about-page .about-text p {
   margin-bottom: 18px;
   font-size: 1rem;
@@ -334,6 +340,10 @@
 
   .page-hero {
     height: 35vh;
+  }
+
+  .about-page .about-image {
+    position: static;
   }
 
   .process-step {
