@@ -44,6 +44,17 @@
   opacity: 0.6;
 }
 
+/* --- About Page --- */
+.about-page {
+  max-width: 1300px;
+}
+
+.about-page .about-text p {
+  margin-bottom: 18px;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
 /* --- Contact Page --- */
 .contact-email {
   margin: 30px 0;
@@ -109,6 +120,78 @@
 
 .read-more:hover {
   opacity: 0.7;
+}
+
+/* --- Article Page --- */
+.article-content {
+  max-width: 800px;
+}
+
+.article-meta {
+  margin-bottom: 10px;
+}
+
+.article-hero-image {
+  width: 100%;
+  height: auto;
+  margin-bottom: 40px;
+}
+
+.article-body p {
+  margin-bottom: 18px;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.article-body h2 {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 1.3rem;
+  margin: 40px 0 20px;
+}
+
+.article-body hr {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 40px 0;
+}
+
+.article-body ul,
+.article-body ol {
+  margin: 0 0 24px 24px;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.article-body li {
+  margin-bottom: 8px;
+}
+
+.article-body a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.article-image-row {
+  display: flex;
+  gap: 12px;
+  margin: 30px 0;
+}
+
+.article-image-row img {
+  flex: 1;
+  min-width: 0;
+  height: auto;
+  object-fit: cover;
+}
+
+@media (max-width: 600px) {
+  .article-image-row {
+    flex-wrap: wrap;
+  }
+  .article-image-row img {
+    flex: 1 1 45%;
+  }
 }
 
 /* --- FAQ Page --- */
