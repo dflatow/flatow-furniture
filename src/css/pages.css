@@ -73,8 +73,10 @@
 }
 
 .contact-address h2 {
-  font-family: var(--font-body);
+  font-family: var(--font-display);
   font-weight: 300;
+  font-style: italic;
+  text-transform: lowercase;
   font-size: 1.4rem;
   margin-bottom: 12px;
 }
@@ -102,8 +104,10 @@
 }
 
 .journal-title {
-  font-family: var(--font-body);
-  font-weight: 300;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-style: italic;
+  text-transform: lowercase;
   font-size: 1.6rem;
   line-height: 1.3;
   margin-bottom: 16px;
@@ -205,8 +209,10 @@
 }
 
 .faq-category h2 {
-  font-family: var(--font-body);
-  font-weight: 300;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-style: italic;
+  text-transform: lowercase;
   font-size: 1.6rem;
   margin-bottom: 20px;
   padding-bottom: 10px;
@@ -285,7 +291,8 @@
 }
 
 .step-number {
-  font-family: var(--font-body);
+  font-family: var(--font-display);
+  font-style: italic;
   font-size: 2rem;
   font-weight: 300;
   color: var(--color-text-light);
@@ -293,8 +300,10 @@
 }
 
 .step-content h3 {
-  font-family: var(--font-body);
+  font-family: var(--font-display);
   font-weight: 400;
+  font-style: italic;
+  text-transform: lowercase;
   font-size: 1.3rem;
   margin-bottom: 10px;
 }
@@ -313,8 +322,10 @@
 }
 
 .cta-section h2 {
-  font-family: var(--font-body);
+  font-family: var(--font-display);
   font-weight: 300;
+  font-style: italic;
+  text-transform: lowercase;
   font-size: 2.6rem;
   margin-bottom: 16px;
 }
