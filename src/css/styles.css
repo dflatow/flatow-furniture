@@ -256,9 +256,8 @@ body.menu-open {
 
 /* --- Section Titles --- */
 .section-title {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-weight: 300;
-  font-style: italic;
   font-size: clamp(2.4rem, 5vw, 3.7rem);
   line-height: 1.2;
   color: var(--color-text);
@@ -364,8 +363,8 @@ body.menu-open {
 }
 
 .gallery-feature-info h3 {
-  font-family: var(--font-display);
-  font-weight: 400;
+  font-family: var(--font-body);
+  font-weight: 300;
   font-size: clamp(1.8rem, 3vw, 2.4rem);
   margin-bottom: 16px;
   color: var(--color-text);
@@ -593,8 +592,7 @@ cite {
 }
 
 .social-links a {
-  font-family: var(--font-display);
-  font-style: italic;
+  font-family: var(--font-body);
   font-size: 1.1rem;
   text-decoration: underline;
   text-underline-offset: 3px;
@@ -654,9 +652,8 @@ cite {
 }
 
 .footer-heading {
-  font-family: var(--font-display);
-  font-weight: 300;
-  font-style: italic;
+  font-family: var(--font-body);
+  font-weight: 400;
   font-size: 1.5rem;
   margin-bottom: 16px;
 }
