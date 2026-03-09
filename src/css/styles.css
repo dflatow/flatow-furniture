@@ -265,48 +265,63 @@ body.menu-open {
   letter-spacing: -0.01em;
 }
 
-/* --- Gallery --- */
-.gallery {
-  padding: 40px 40px 20px;
-  max-width: 1300px;
-  margin: 0 auto;
+/* --- Gallery (Full-width Feature Layout) --- */
+.gallery-full {
+  padding: 0;
 }
 
-.gallery > .section-title {
-  margin-bottom: 40px;
-  padding-bottom: 10px;
+.gallery-feature {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  min-height: 70vh;
   border-bottom: 1px solid var(--color-border);
 }
 
-.gallery-piece {
-  margin-bottom: 60px;
+.gallery-feature.reverse {
+  grid-template-columns: 2fr 3fr;
 }
 
-/* --- Carousel --- */
-.carousel {
+.gallery-feature.reverse .gallery-feature-image {
+  order: 2;
+}
+
+.gallery-feature.reverse .gallery-feature-info {
+  order: 1;
+}
+
+.gallery-feature-image {
   position: relative;
   overflow: hidden;
 }
 
-.carousel-track {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+.gallery-feature-image .carousel-track {
+  display: block;
+  height: 100%;
 }
 
-.carousel-slide {
-  aspect-ratio: 4/3;
-  overflow: hidden;
+.gallery-feature-image .carousel-slide {
+  display: none;
+  height: 100%;
 }
 
-.carousel-slide img {
+.gallery-feature-image .carousel-slide.active {
+  display: block;
+}
+
+.gallery-feature-image .carousel-slide picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.gallery-feature-image .carousel-slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s ease;
 }
 
-.carousel-slide img:hover {
+.gallery-feature-image .carousel-slide img:hover {
   transform: scale(1.02);
 }
 
@@ -341,35 +356,26 @@ body.menu-open {
   right: 12px;
 }
 
-.carousel-counter {
-  text-align: center;
-  margin-top: 10px;
-  font-size: 0.85rem;
-  color: var(--color-text-light);
+.gallery-feature-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 50px;
 }
 
-/* --- Piece Info (above carousel) --- */
-.piece-info {
-  margin-bottom: 16px;
-}
-
-.piece-info h3 {
+.gallery-feature-info h3 {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: 1.8rem;
-  margin-bottom: 8px;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  margin-bottom: 16px;
   color: var(--color-text);
+  line-height: 1.2;
 }
 
-.piece-info p {
-  font-size: 0.95rem;
-  line-height: 1.7;
+.gallery-feature-info p {
+  font-size: 1rem;
+  line-height: 1.8;
   color: var(--color-text);
-  margin-bottom: 6px;
-}
-
-.piece-info .email-link {
-  font-size: 0.95rem;
 }
 
 /* --- Reviews --- */
@@ -689,23 +695,32 @@ cite {
 
   .intro,
   .about,
-  .gallery,
   .reviews,
   .social {
     padding-left: 24px;
     padding-right: 24px;
   }
 
-  .carousel-track {
+  .gallery-feature,
+  .gallery-feature.reverse {
     grid-template-columns: 1fr;
+    min-height: auto;
   }
 
-  .carousel-slide {
-    display: none;
+  .gallery-feature.reverse .gallery-feature-image {
+    order: 0;
   }
 
-  .carousel-slide.active {
-    display: block;
+  .gallery-feature.reverse .gallery-feature-info {
+    order: 0;
+  }
+
+  .gallery-feature-info {
+    padding: 30px 24px;
+  }
+
+  .gallery-feature-image .carousel-slide {
+    aspect-ratio: 4/3;
   }
 
   .social-grid {
