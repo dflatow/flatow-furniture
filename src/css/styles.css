@@ -560,6 +560,15 @@ cite {
   line-height: 1.8;
 }
 
+.about-image-mobile {
+  display: none;
+}
+
+.about-image-mobile img {
+  width: 100%;
+  height: auto;
+}
+
 .about-image img {
   width: 100%;
   height: auto;
@@ -691,6 +700,15 @@ cite {
   .about-grid {
     grid-template-columns: 1fr;
     gap: 40px;
+  }
+
+  .about-image {
+    display: none;
+  }
+
+  .about-image-mobile {
+    display: block;
+    margin: 10px 0 18px;
   }
 
   .intro,
