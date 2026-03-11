@@ -256,7 +256,7 @@ body.menu-open {
 
 /* --- Section Titles --- */
 .section-title {
-  font-weight: 500;
+  font-weight: 400;
   font-style: normal;
   font-size: clamp(2.4rem, 5vw, 3.7rem);
   line-height: 1.2;
@@ -363,7 +363,7 @@ body.menu-open {
 }
 
 .gallery-feature-info h3 {
-  font-weight: 500;
+  font-weight: 400;
   font-style: normal;
   font-size: clamp(1.8rem, 3vw, 2.4rem);
   margin-bottom: 16px;
@@ -657,7 +657,7 @@ cite {
 }
 
 .footer-grid .footer-heading {
-  font-weight: 500;
+  font-weight: 400;
   font-style: normal;
   font-size: 2rem;
   margin-bottom: 16px;
