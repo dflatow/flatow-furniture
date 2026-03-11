@@ -258,7 +258,7 @@ body.menu-open {
 .section-title {
   font-weight: 400;
   font-style: normal;
-  font-size: clamp(2.4rem, 5vw, 3.7rem);
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
   line-height: 1.2;
   color: var(--color-text);
   letter-spacing: -0.01em;
@@ -365,7 +365,7 @@ body.menu-open {
 .gallery-feature-info h3 {
   font-weight: 400;
   font-style: normal;
-  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-size: clamp(1.4rem, 2.2vw, 1.8rem);
   margin-bottom: 16px;
   color: var(--color-text);
   line-height: 1.2;
@@ -659,7 +659,7 @@ cite {
 .footer-grid .footer-heading {
   font-weight: 400;
   font-style: normal;
-  font-size: 2rem;
+  font-size: 1.4rem;
   margin-bottom: 16px;
 }
 
@@ -774,7 +774,7 @@ cite {
   }
 
   .section-title {
-    font-size: 2rem;
+    font-size: 1.6rem;
   }
 
   .social-grid {
