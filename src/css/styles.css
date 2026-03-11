@@ -33,8 +33,8 @@
   --color-text-light: #8a7a5e;
   --color-border: rgba(100, 90, 70, 0.2);
   --color-accent: #8a7a5e;
-  --font-display: 'Flatow Hand', 'Cormorant Garamond', Georgia, serif;
-  --font-body: 'Jost', 'Helvetica Neue', sans-serif;
+  --font-display: 'Flatow Hand', Georgia, serif;
+  --font-body: 'Crimson Pro', Georgia, serif;
   --header-height: 80px;
 }
 
@@ -256,8 +256,7 @@ body.menu-open {
 
 /* --- Section Titles --- */
 .section-title {
-  font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 500;
   font-style: italic;
   text-transform: lowercase;
   font-size: clamp(2.4rem, 5vw, 3.7rem);
@@ -365,8 +364,7 @@ body.menu-open {
 }
 
 .gallery-feature-info h3 {
-  font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 500;
   font-style: italic;
   text-transform: lowercase;
   font-size: clamp(1.8rem, 3vw, 2.4rem);
@@ -596,12 +594,11 @@ cite {
 }
 
 .social-links a {
-  font-family: var(--font-display);
   font-style: italic;
   text-transform: lowercase;
-  font-size: 1.1rem;
+  font-size: 1.6rem;
   text-decoration: underline;
-  text-underline-offset: 3px;
+  text-underline-offset: 4px;
   transition: opacity 0.3s ease;
 }
 
@@ -657,18 +654,17 @@ cite {
   text-align: center;
 }
 
-.footer-heading {
-  font-family: var(--font-display);
-  font-weight: 300;
-  font-style: italic;
-  text-transform: lowercase;
-  font-size: 1.5rem;
-  margin-bottom: 16px;
-}
-
 .footer-grid p {
   font-size: 0.95rem;
   line-height: 1.6;
+}
+
+.footer-grid .footer-heading {
+  font-weight: 400;
+  font-style: italic;
+  text-transform: lowercase;
+  font-size: 2rem;
+  margin-bottom: 16px;
 }
 
 .footer-logo img {
