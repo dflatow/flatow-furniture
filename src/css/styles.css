@@ -257,8 +257,7 @@ body.menu-open {
 /* --- Section Titles --- */
 .section-title {
   font-weight: 500;
-  font-style: italic;
-  text-transform: lowercase;
+  font-style: normal;
   font-size: clamp(2.4rem, 5vw, 3.7rem);
   line-height: 1.2;
   color: var(--color-text);
@@ -365,8 +364,7 @@ body.menu-open {
 
 .gallery-feature-info h3 {
   font-weight: 500;
-  font-style: italic;
-  text-transform: lowercase;
+  font-style: normal;
   font-size: clamp(1.8rem, 3vw, 2.4rem);
   margin-bottom: 16px;
   color: var(--color-text);
@@ -594,8 +592,7 @@ cite {
 }
 
 .social-links a {
-  font-style: italic;
-  text-transform: lowercase;
+  font-style: normal;
   font-size: 1.6rem;
   text-decoration: underline;
   text-underline-offset: 4px;
@@ -660,9 +657,8 @@ cite {
 }
 
 .footer-grid .footer-heading {
-  font-weight: 400;
-  font-style: italic;
-  text-transform: lowercase;
+  font-weight: 500;
+  font-style: normal;
   font-size: 2rem;
   margin-bottom: 16px;
 }
