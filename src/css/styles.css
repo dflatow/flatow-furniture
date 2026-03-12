@@ -206,7 +206,7 @@ body.menu-open {
 .hero {
   width: 100%;
   height: 100vh;
-  overflow: hidden;
+  overflow: visible;
   position: relative;
 }
 
@@ -262,6 +262,27 @@ body.menu-open {
   line-height: 1.2;
   color: var(--color-text);
   letter-spacing: -0.01em;
+}
+
+/* --- Tagline Overlay --- */
+.tagline {
+  position: absolute;
+  bottom: -1.2em;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  text-align: center;
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: clamp(1.4rem, 3vw, 2.4rem);
+  color: #fff;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  margin: 0;
+  padding: 0 20px;
+  text-shadow:
+    0 0 20px rgba(0, 0, 0, 0.7),
+    0 0 40px rgba(0, 0, 0, 0.5);
 }
 
 /* --- Gallery (Full-width Feature Layout) --- */
@@ -362,7 +383,7 @@ body.menu-open {
   padding: 60px 50px;
 }
 
-.gallery-feature-info h3 {
+.gallery-feature-info h2 {
   font-weight: 400;
   font-style: normal;
   font-size: clamp(1.4rem, 2.2vw, 1.8rem);
