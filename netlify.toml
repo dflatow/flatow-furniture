@@ -18,6 +18,15 @@
   status = 301
   force = true
 
+# Security headers for all pages
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
 # Cache static assets for 1 year (immutable content)
 [[headers]]
   for = "/images/*"

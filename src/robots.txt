@@ -2,3 +2,6 @@ User-agent: *
 Allow: /
 
 Sitemap: https://flatowfurniture.com/sitemap.xml
+
+# AI/LLM summary
+# See https://flatowfurniture.com/llms.txt
