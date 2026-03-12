@@ -66,16 +66,25 @@ jobs:
   pagespeed:
     runs-on: ubuntu-latest
     needs: lint-and-validate
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     continue-on-error: true
     steps:
       - name: Wait for Netlify deploy
-        run: sleep 30
+        run: sleep 60
+
+      - name: Determine site URL
+        id: url
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            # Netlify deploy preview URL pattern: deploy-preview-{PR#}--{site}.netlify.app
+            echo "site_url=https://deploy-preview-${{ github.event.pull_request.number }}--flatowfurniture.netlify.app/" >> $GITHUB_OUTPUT
+          else
+            echo "site_url=https://flatowfurniture.netlify.app/" >> $GITHUB_OUTPUT
+          fi
 
       - name: Run PageSpeed Insights
         run: |
           set +e
-          SITE_URL="https://flatowfurniture.netlify.app/"
+          SITE_URL="${{ steps.url.outputs.site_url }}"
           API_BASE="https://www.googleapis.com/pagespeedonline/v5/runPagespeed"
           API_KEY="${{ secrets.PAGESPEED_API_KEY }}"
 

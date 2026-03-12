@@ -1,6 +1,10 @@
 [build]
   publish = "src"
 
+# Deploy Previews for pull requests
+[context.deploy-preview]
+  publish = "src"
+
 # Redirect old domain to new primary domain
 [[redirects]]
   from = "https://flatow.furniture/*"
