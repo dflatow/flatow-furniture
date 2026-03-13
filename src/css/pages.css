@@ -515,13 +515,8 @@
   margin-top: 24px;
 }
 
-.cta-contact .email-link,
-.cta-contact .phone-link {
+.cta-contact .email-link {
   font-size: 1.1rem;
-}
-
-.cta-contact .phone-link {
-  color: var(--color-text-light);
 }
 
 /* --- Responsive --- */
