@@ -260,6 +260,36 @@
 }
 
 /* --- Design Page --- */
+
+/* Hero with overlay */
+.design-hero {
+  width: 100%;
+  height: 70vh;
+  min-height: 400px;
+  overflow: hidden;
+  position: relative;
+}
+
+.design-hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.design-page-title {
+  font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+  line-height: 1.15;
+  text-align: left;
+  text-wrap: balance;
+  margin: 0 0 1.5rem;
+}
+
+/* Design page content */
+.design-page {
+  max-width: 1200px;
+}
+
 .design-intro {
   margin-bottom: 60px;
 }
@@ -270,41 +300,181 @@
   line-height: 1.8;
 }
 
-.process-steps {
+.design-intro ul {
+  margin: 0 0 18px 24px;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.design-intro li {
+  margin-bottom: 6px;
+}
+
+/* Split sections (text + image side by side) */
+.design-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+  margin-bottom: 60px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.design-split--reverse {
+  direction: rtl;
+}
+
+.design-split--reverse > * {
+  direction: ltr;
+}
+
+.design-split-text h2 {
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2.1rem;
+  margin-bottom: 20px;
+  line-height: 1.25;
+}
+
+.design-split-text h3 {
+  font-weight: 500;
+  font-style: normal;
+  font-size: 1.2rem;
+  margin: 24px 0 10px;
+}
+
+.design-split-text h3:first-of-type {
+  margin-top: 0;
+}
+
+.design-split-text p {
+  margin-bottom: 14px;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.design-split-text ul {
+  margin: 0 0 14px 24px;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.design-split-text li {
+  margin-bottom: 6px;
+}
+
+.design-split-image {
+  position: sticky;
+  top: 100px;
+  align-self: start;
+}
+
+.design-split-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Process section */
+.design-process-section {
+  margin-bottom: 60px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.design-process-title {
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2.6rem;
+  margin-bottom: 30px;
+}
+
+.design-process-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 40px;
+}
+
+.design-process-grid img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Accordion steps */
+.design-steps {
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  margin-bottom: 60px;
 }
 
-.process-step {
-  display: grid;
-  grid-template-columns: 60px 1fr;
-  gap: 20px;
-  align-items: start;
+.design-step {
+  border-bottom: 1px solid var(--color-border);
 }
 
-.step-number {
-  font-style: normal;
-  font-size: 2rem;
+.design-step summary {
+  cursor: pointer;
+  padding: 20px 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.design-step summary::-webkit-details-marker {
+  display: none;
+}
+
+.design-step-title {
+  font-family: var(--font-body);
+  font-size: 1.6rem;
   font-weight: 400;
-  color: var(--color-text-light);
+  font-style: italic;
+}
+
+.design-step summary::after {
+  content: '\2304';
+  font-size: 1.6rem;
   line-height: 1;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
 }
 
-.step-content h3 {
-  font-weight: 400;
-  font-style: normal;
-  font-size: 1.3rem;
-  margin-bottom: 10px;
+.design-step[open] summary::after {
+  transform: rotate(180deg);
 }
 
-.step-content p {
+.design-step-content {
+  padding: 0 0 24px;
   font-size: 0.95rem;
   line-height: 1.8;
-  margin-bottom: 10px;
 }
 
+.design-step-content p {
+  margin-bottom: 12px;
+}
+
+.design-step-content h3 {
+  font-weight: 500;
+  font-style: normal;
+  font-size: 1rem;
+  margin: 20px 0 8px;
+}
+
+.design-step-content ul,
+.design-step-content ol {
+  margin: 0 0 12px 24px;
+  line-height: 1.8;
+}
+
+.design-step-content li {
+  margin-bottom: 4px;
+}
+
+/* CTA section */
 .cta-section {
   background: var(--color-bg-white);
   padding: 50px 40px;
@@ -325,6 +495,30 @@
   line-height: 1.8;
 }
 
+.cta-section ol {
+  display: inline-block;
+  text-align: left;
+  margin: 0 0 20px 24px;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.cta-section li {
+  margin-bottom: 6px;
+}
+
+.cta-contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.cta-contact .email-link {
+  font-size: 1.1rem;
+}
+
 /* --- Responsive --- */
 @media (max-width: 900px) {
   .page-content {
@@ -336,12 +530,52 @@
     height: 35vh;
   }
 
+  .design-hero {
+    height: 50vh;
+    min-height: 300px;
+  }
+
+  .design-hero-overlay {
+    padding: 24px;
+  }
+
   .about-page .about-image {
     position: static;
   }
 
-  .process-step {
+  .design-split {
     grid-template-columns: 1fr;
-    gap: 8px;
+    gap: 24px;
+  }
+
+  .design-split--reverse {
+    direction: ltr;
+  }
+
+  .design-split-image {
+    position: static;
+    order: -1;
+  }
+
+  .design-split--reverse .design-split-image {
+    order: -1;
+  }
+
+  .design-process-grid img {
+    height: 200px;
+  }
+
+  .design-step-title {
+    font-size: 1.3rem;
+  }
+
+  .cta-section {
+    padding: 40px 24px;
+  }
+}
+
+@media (max-width: 500px) {
+  .design-process-grid {
+    grid-template-columns: 1fr;
   }
 }
