@@ -17,6 +17,15 @@
   object-position: center;
 }
 
+.about-hero {
+  height: auto;
+}
+
+.about-hero .page-hero-image {
+  height: auto;
+  object-fit: contain;
+}
+
 /* --- Page Content --- */
 .page-content {
   padding: 60px 40px 80px;
