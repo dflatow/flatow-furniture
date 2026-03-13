@@ -281,6 +281,7 @@
   font-size: clamp(2.2rem, 4.5vw, 3.2rem);
   line-height: 1.15;
   text-align: left;
+  text-wrap: balance;
   margin: 0 0 1.5rem;
 }
 
