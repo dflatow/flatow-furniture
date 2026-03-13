@@ -18,12 +18,13 @@
 }
 
 .about-hero {
-  height: auto;
+  height: 100vh;
 }
 
-.about-hero .page-hero-image {
-  height: auto;
-  object-fit: contain;
+@media (max-width: 600px) {
+  .about-hero {
+    height: 60vh;
+  }
 }
 
 /* --- Page Content --- */
