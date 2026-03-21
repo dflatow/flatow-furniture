@@ -316,24 +316,15 @@ body.menu-open {
 .gallery-feature-image .carousel-track {
   display: block;
   height: 100%;
-  position: relative;
 }
 
 .gallery-feature-image .carousel-slide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+  display: none;
   height: 100%;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
 }
 
 .gallery-feature-image .carousel-slide.active {
-  opacity: 1;
-  position: relative;
-  pointer-events: auto;
+  display: block;
 }
 
 .gallery-feature-image .carousel-slide picture {
