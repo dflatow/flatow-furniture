@@ -34,6 +34,22 @@ function initMobileMenu() {
 
 /* --- Gallery Carousels (mobile single-slide mode) --- */
 function initGalleryCarousels() {
+  /* Preload all carousel images once the carousel scrolls into view */
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('img[loading="lazy"]').forEach(img => {
+            img.removeAttribute('loading');
+          });
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '200px' });
+
+    document.querySelectorAll('[data-carousel]').forEach(c => observer.observe(c));
+  }
+
   document.querySelectorAll('[data-carousel]').forEach(carousel => {
     const slides = carousel.querySelectorAll('.carousel-slide');
     const prevBtn = carousel.querySelector('.carousel-btn.prev');
