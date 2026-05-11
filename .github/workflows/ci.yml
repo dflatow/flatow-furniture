@@ -26,8 +26,8 @@ jobs:
         run: |
           echo "Checking required files exist..."
           test -f src/index.html && echo "✓ index.html"
-          test -f src/css/styles.min.css && echo "✓ styles.min.css"
-          test -f src/js/main.min.js && echo "✓ main.min.js"
+          test -f src/css/styles.css && echo "✓ styles.css"
+          test -f src/js/main.js && echo "✓ main.js"
           test -d src/images && echo "✓ images directory"
           echo "All checks passed!"
 
@@ -35,9 +35,10 @@ jobs:
         run: |
           echo "Checking internal page references..."
           # Verify all subpage directories have index.html
-          for dir in design journal faq contact; do
+          for dir in design journal faq contact inquiry; do
             test -f "src/$dir/index.html" && echo "✓ $dir/index.html" || { echo "✗ Missing $dir/index.html"; exit 1; }
           done
+          test -f "src/inquiry/thanks/index.html" && echo "✓ inquiry/thanks/index.html" || { echo "✗ Missing inquiry/thanks/index.html"; exit 1; }
           echo "All internal pages exist!"
 
       - name: Check image references

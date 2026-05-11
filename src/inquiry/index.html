@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-K7C98BWXMM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-K7C98BWXMM');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Inquiry | Flatow Furniture</title>
+  <meta name="description" content="Start a new custom furniture or built-in project with Flatow Furniture. Tell us about your space, timeline, and ideas — David will reply within a couple of business days.">
+  <link rel="icon" type="image/x-icon" href="/images/favicon/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+  <link rel="canonical" href="https://flatowfurniture.com/inquiry/">
+  <meta property="og:title" content="Project Inquiry | Flatow Furniture">
+  <meta property="og:description" content="Start a new custom furniture or built-in project. Tell us about your idea and David will reply within a couple of business days.">
+  <meta property="og:image" content="https://flatowfurniture.com/images/hero-1200w.jpeg">
+  <meta property="og:url" content="https://flatowfurniture.com/inquiry/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Flatow Furniture">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Project Inquiry | Flatow Furniture">
+  <meta name="twitter:description" content="Start a new custom furniture or built-in project with Flatow Furniture.">
+  <meta name="twitter:image" content="https://flatowfurniture.com/images/hero-1200w.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" rel="stylesheet"></noscript>
+  <link rel="preload" as="image" href="/images/hero-1200w.webp" type="image/webp" imagesrcset="/images/hero-800w.webp 800w, /images/hero-1200w.webp 1200w, /images/hero-1800w.webp 1800w, /images/hero.webp 2500w" imagesizes="100vw" fetchpriority="high">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/pages.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="logo-link">
+        <img src="/images/logo/white-logo.png" alt="Flatow Furniture" class="logo">
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="/#gallery">Gallery</a>
+        <a href="/design">Design</a>
+        <a href="/inquiry" class="active">Inquiry</a>
+        <a href="/about">About</a>
+        <a href="/journal">Journal</a>
+        <a href="/faq">FAQ</a>
+        <a href="/contact">Contact</a>
+      </nav>
+      <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span class="menu-icon"></span>
+      </button>
+    </div>
+    <nav class="mobile-nav" aria-label="Mobile navigation">
+      <a href="/#gallery">Gallery</a>
+      <a href="/design">Design</a>
+      <a href="/inquiry" class="active">Inquiry</a>
+      <a href="/about">About</a>
+      <a href="/journal">Journal</a>
+      <a href="/faq">FAQ</a>
+      <a href="/contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="page">
+    <section class="page-hero">
+      <picture><source srcset="/images/hero-800w.webp 800w, /images/hero-1200w.webp 1200w, /images/hero-1800w.webp 1800w, /images/hero.webp 2500w" sizes="100vw" type="image/webp"><img src="/images/hero.jpeg" alt="Flatow Furniture workshop" class="page-hero-image" srcset="/images/hero-800w.jpeg 800w, /images/hero-1200w.jpeg 1200w, /images/hero-1800w.jpeg 1800w, /images/hero.jpeg 2500w" sizes="100vw" width="2500" height="1667"></picture>
+    </section>
+
+    <section class="page-content">
+      <h1 class="section-title">Project Inquiry</h1>
+      <div class="page-body narrow">
+        <p>Tell David about your project. The more you share &mdash; dimensions, materials, intended use, references &mdash; the more thoughtfully he can reply.</p>
+        <p>If you'd rather skip the form, email <a href="mailto:inquire@flatow.furniture" class="email-link" data-link-location="inquiry-page-cta">inquire@flatow.furniture</a> directly.</p>
+
+        <form name="inquiry"
+              id="inquiry-form"
+              method="POST"
+              action="/inquiry/thanks/"
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
+              enctype="multipart/form-data"
+              class="inquiry-form">
+
+          <input type="hidden" name="form-name" value="inquiry">
+
+          <p class="hp-field" aria-hidden="true">
+            <label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+          </p>
+
+          <div class="form-row">
+            <label for="f-name">Name <span aria-hidden="true">*</span></label>
+            <input id="f-name" type="text" name="name" required autocomplete="name">
+          </div>
+
+          <div class="form-row">
+            <label for="f-email">Email <span aria-hidden="true">*</span></label>
+            <input id="f-email" type="email" name="email" required autocomplete="email" inputmode="email">
+          </div>
+
+          <div class="form-row">
+            <label for="f-phone">Phone (optional)</label>
+            <input id="f-phone" type="tel" name="phone" autocomplete="tel" inputmode="tel">
+          </div>
+
+          <fieldset class="form-row form-row-radio">
+            <legend>Preferred contact method</legend>
+            <label><input type="radio" name="preferred_contact" value="email" checked> Email</label>
+            <label><input type="radio" name="preferred_contact" value="phone"> Phone</label>
+            <label><input type="radio" name="preferred_contact" value="either"> Either</label>
+          </fieldset>
+
+          <div class="form-row">
+            <label for="f-city">City or neighborhood (optional)</label>
+            <input id="f-city" type="text" name="city" autocomplete="address-level2">
+          </div>
+
+          <div class="form-row">
+            <label for="f-project-type">Project type <span aria-hidden="true">*</span></label>
+            <select id="f-project-type" name="project_type" required>
+              <option value="">Choose one&hellip;</option>
+              <option value="freestanding">Freestanding furniture (tables, chairs, credenzas, nightstands, etc.)</option>
+              <option value="builtins">Built-ins (cabinetry, libraries, architectural details)</option>
+              <option value="commercial">Commercial space</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label for="f-timeline">Timeline (optional)</label>
+            <select id="f-timeline" name="timeline">
+              <option value="">Choose one&hellip;</option>
+              <option>Flexible</option>
+              <option>Within 3 months</option>
+              <option>3&ndash;6 months</option>
+              <option>6+ months</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label for="f-budget">Budget range (optional)</label>
+            <select id="f-budget" name="budget">
+              <option value="">Choose one&hellip;</option>
+              <option>Under $5,000</option>
+              <option>$5,000&ndash;$10,000</option>
+              <option>$10,000&ndash;$20,000</option>
+              <option>$20,000&ndash;$30,000</option>
+              <option>$30,000+</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label for="f-description">Project description <span aria-hidden="true">*</span></label>
+            <textarea id="f-description" name="description" required rows="6" placeholder="Dimensions, materials, intended use, references&hellip;"></textarea>
+          </div>
+
+          <div class="form-row">
+            <label for="f-photos">Reference photos (optional, 8 MB total)</label>
+            <input id="f-photos" type="file" name="reference_photos" multiple accept="image/jpeg,image/png,image/heic,image/webp">
+            <p class="form-hint" id="photos-hint" aria-live="polite"></p>
+          </div>
+
+          <div class="form-row">
+            <label for="f-source">How did you hear about Flatow Furniture? (optional)</label>
+            <input id="f-source" type="text" name="referrer_source" autocomplete="off">
+          </div>
+
+          <button type="submit" class="form-submit">Send inquiry</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-location">
+        <p class="footer-heading">Location</p>
+        <p>1501 Cortland Ave</p>
+        <p>San Francisco, CA</p>
+      </div>
+      <div class="footer-logo">
+        <img src="/images/logo/dark-logo.png" alt="Flatow Furniture" loading="lazy">
+      </div>
+      <div class="footer-contact">
+        <p class="footer-heading">Contact</p>
+        <a href="mailto:inquire@flatow.furniture">inquire@flatow.furniture</a>
+      </div>
+    </div>
+  </footer>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Project Inquiry",
+    "url": "https://flatowfurniture.com/inquiry/",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "Flatow Furniture",
+      "email": "inquire@flatow.furniture",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "Sales",
+        "email": "inquire@flatow.furniture",
+        "areaServed": "San Francisco Bay Area"
+      }
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://flatowfurniture.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Inquiry" }
+    ]
+  }
+  </script>
+  <script src="/js/main.js"></script>
+</body>
+</html>
