@@ -125,15 +125,15 @@
             <select id="f-project-type" name="project_type" required>
               <option value="">Choose one&hellip;</option>
               <option value="freestanding">Freestanding furniture (tables, chairs, credenzas, nightstands, etc.)</option>
-              <option value="builtins">Built-ins (cabinetry, libraries, architectural details)</option>
+              <option value="builtins">Built-ins (cabinetry, libraries, architectural details, etc.)</option>
               <option value="commercial">Commercial space</option>
               <option value="other">Other</option>
             </select>
           </div>
 
           <div class="form-row">
-            <label for="f-timeline">Timeline (optional)</label>
-            <select id="f-timeline" name="timeline">
+            <label for="f-timeline">Timeline <span aria-hidden="true">*</span></label>
+            <select id="f-timeline" name="timeline" required>
               <option value="">Choose one&hellip;</option>
               <option>Flexible</option>
               <option>Within 3 months</option>
@@ -144,8 +144,8 @@
           </div>
 
           <div class="form-row">
-            <label for="f-budget">Budget range (optional)</label>
-            <select id="f-budget" name="budget">
+            <label for="f-budget">Rough Estimate of Budget <span aria-hidden="true">*</span></label>
+            <select id="f-budget" name="budget" required>
               <option value="">Choose one&hellip;</option>
               <option>Under $5,000</option>
               <option>$5,000&ndash;$10,000</option>
