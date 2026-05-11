@@ -162,8 +162,10 @@
           </div>
 
           <div class="form-row">
-            <label for="f-photos">Reference photos (optional, 8 MB total)</label>
+            <label for="f-photos">Reference photos (optional)</label>
             <input id="f-photos" type="file" name="reference_photos" multiple accept="image/jpeg,image/png,image/heic,image/webp">
+            <p class="form-hint form-hint-static">Photos are resized automatically so you can attach as many as you'd like.</p>
+            <div id="photos-preview" class="photo-previews"></div>
             <p class="form-hint" id="photos-hint" aria-live="polite"></p>
           </div>
 
