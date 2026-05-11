@@ -591,3 +591,182 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* --- Inquiry Form --- */
+.inquiry-form {
+  margin-top: 36px;
+}
+
+.inquiry-form .form-row {
+  margin-bottom: 26px;
+  display: flex;
+  flex-direction: column;
+  border: none;
+  padding: 0;
+}
+
+.inquiry-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 1rem;
+  color: var(--color-text);
+}
+
+.inquiry-form legend {
+  margin-bottom: 10px;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 1rem;
+  color: var(--color-text);
+  padding: 0;
+}
+
+.inquiry-form label span[aria-hidden="true"] {
+  color: var(--color-accent);
+  margin-left: 4px;
+}
+
+.inquiry-form .form-row-radio {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 22px;
+}
+
+.inquiry-form .form-row-radio legend {
+  flex-basis: 100%;
+}
+
+.inquiry-form .form-row-radio label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 0;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.inquiry-form .form-row-radio input[type="radio"] {
+  width: auto;
+  accent-color: var(--color-accent);
+  cursor: pointer;
+}
+
+.inquiry-form input[type="text"],
+.inquiry-form input[type="email"],
+.inquiry-form input[type="tel"],
+.inquiry-form select,
+.inquiry-form textarea {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 1rem;
+  color: var(--color-text);
+  background: var(--color-bg-white);
+  border: 1px solid var(--color-border);
+  padding: 11px 14px;
+  border-radius: 2px;
+  width: 100%;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.inquiry-form input:focus,
+.inquiry-form select:focus,
+.inquiry-form textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 2px rgba(138, 122, 94, 0.15);
+}
+
+.inquiry-form textarea {
+  resize: vertical;
+  min-height: 140px;
+  line-height: 1.6;
+}
+
+.inquiry-form select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%238a7a5e' stroke-width='1.5' d='M3.5 6L8 10.5 12.5 6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 14px 14px;
+  padding-right: 38px;
+  cursor: pointer;
+}
+
+.inquiry-form input[type="file"] {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 6px 0;
+  background: none;
+  border: none;
+  width: 100%;
+  color: var(--color-text);
+}
+
+.inquiry-form input[type="file"]::file-selector-button {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--color-text);
+  background: var(--color-bg-white);
+  border: 1px solid var(--color-border);
+  padding: 8px 14px;
+  border-radius: 2px;
+  cursor: pointer;
+  margin-right: 12px;
+  transition: background 0.2s ease;
+}
+
+.inquiry-form input[type="file"]::file-selector-button:hover {
+  background: #ede7dc;
+}
+
+.inquiry-form .form-hint {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+  line-height: 1.5;
+}
+
+.inquiry-form .form-hint.error {
+  color: #a52a2a;
+}
+
+.inquiry-form .form-submit {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.6rem;
+  font-weight: 400;
+  background: var(--color-text);
+  color: #fff;
+  border: none;
+  padding: 14px 36px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  margin-top: 12px;
+  letter-spacing: 0.02em;
+}
+
+.inquiry-form .form-submit:hover {
+  opacity: 0.85;
+}
+
+.inquiry-form .hp-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+@media (max-width: 600px) {
+  .inquiry-form .form-submit {
+    width: 100%;
+    font-size: 1.4rem;
+  }
+}

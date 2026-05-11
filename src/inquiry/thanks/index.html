@@ -9,70 +9,29 @@
     gtag('js', new Date());
 
     gtag('config', 'G-K7C98BWXMM');
+    gtag('event', 'generate_lead', {
+      form_id: 'inquiry-form',
+      form_name: 'inquiry',
+      currency: 'USD',
+      value: 0
+    });
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Page Not Found | Flatow Furniture</title>
-  <meta name="description" content="The page you're looking for seems to have gone missing.">
+  <meta name="robots" content="noindex">
+  <title>Thanks for your inquiry | Flatow Furniture</title>
+  <meta name="description" content="Thanks for reaching out to Flatow Furniture. David will reply within a couple of business days.">
   <link rel="icon" type="image/x-icon" href="/images/favicon/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+  <link rel="canonical" href="https://flatowfurniture.com/inquiry/thanks/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="/css/styles.css">
-  <style>
-    .error-page {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 40px 24px;
-      padding-top: calc(var(--header-height) + 40px);
-    }
-    .error-code {
-      font-weight: 400;
-      font-style: normal;
-      text-transform: none;
-      font-size: 8rem;
-      line-height: 1;
-      color: var(--color-text-light);
-      margin-bottom: 16px;
-    }
-    .error-title {
-      font-weight: 500;
-      font-style: normal;
-      text-transform: none;
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
-    .error-message {
-      font-size: 1.05rem;
-      line-height: 1.8;
-      max-width: 480px;
-      margin-bottom: 40px;
-      color: var(--color-text);
-    }
-    .error-home {
-      font-style: normal;
-      text-transform: none;
-      font-size: 1.2rem;
-      text-decoration: underline;
-      text-underline-offset: 4px;
-      transition: opacity 0.3s ease;
-    }
-    .error-home:hover {
-      opacity: 0.7;
-    }
-    @media (max-width: 600px) {
-      .error-code { font-size: 5rem; }
-      .error-title { font-size: 1.5rem; }
-    }
-  </style>
+  <link rel="stylesheet" href="/css/pages.css">
 </head>
 <body>
   <header class="site-header">
@@ -104,11 +63,19 @@
     </nav>
   </header>
 
-  <main class="error-page">
-    <div class="error-code">404</div>
-    <h1 class="error-title">This page wandered off like a missing chisel.</h1>
-    <p class="error-message">You know that feeling when you set a tool down for just a second and it vanishes into thin air? That's what happened here. The page you're looking for isn't where it should be.</p>
-    <a href="/" class="error-home">Back to the workshop</a>
+  <main id="page">
+    <section class="page-hero">
+      <picture><source srcset="/images/hero-800w.webp 800w, /images/hero-1200w.webp 1200w, /images/hero-1800w.webp 1800w, /images/hero.webp 2500w" sizes="100vw" type="image/webp"><img src="/images/hero.jpeg" alt="Flatow Furniture workshop" class="page-hero-image" srcset="/images/hero-800w.jpeg 800w, /images/hero-1200w.jpeg 1200w, /images/hero-1800w.jpeg 1800w, /images/hero.jpeg 2500w" sizes="100vw" width="2500" height="1667"></picture>
+    </section>
+
+    <section class="page-content">
+      <h1 class="section-title">Thanks for reaching out</h1>
+      <div class="page-body narrow">
+        <p>David received your inquiry and will reply within a couple of business days from <a href="mailto:inquire@flatow.furniture">inquire@flatow.furniture</a>.</p>
+        <p>If you don't see a reply by then, check your spam folder &mdash; and feel free to email directly.</p>
+        <p>While you wait, you might enjoy <a href="/#gallery" class="email-link">browsing the gallery</a> or <a href="/journal" class="email-link">reading the journal</a>.</p>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">

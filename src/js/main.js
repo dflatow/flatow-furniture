@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initGalleryCarousels();
   initReviewsCarousel();
   initSmoothScrollNav();
+  initEmailLinkTracking();
+  initInquiryForm();
 });
 
 /* --- Mobile Menu --- */
@@ -118,6 +120,86 @@ function initSmoothScrollNav() {
         e.preventDefault();
         target.scrollIntoView({ behavior: 'smooth' });
       }
+    });
+  });
+}
+
+/* --- Email Link Tracking --- */
+function initEmailLinkTracking() {
+  const links = document.querySelectorAll('a[href^="mailto:inquire@flatow.furniture"]');
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      if (typeof gtag !== 'function') return;
+      gtag('event', 'email_link_click', {
+        link_url: 'mailto:inquire@flatow.furniture',
+        link_location: getLinkLocation(link),
+        page_path: location.pathname
+      });
+    });
+  });
+}
+
+function getLinkLocation(link) {
+  if (link.dataset.linkLocation) return link.dataset.linkLocation;
+  if (link.closest('.cta-section')) return 'design-cta';
+  if (link.closest('.contact-email')) return 'contact-page';
+  if (link.closest('.about-text')) return 'about-page';
+  if (link.closest('.article-body')) return 'article-body';
+  if (link.closest('.faq-answer')) return 'faq-answer';
+  if (link.closest('.footer-contact')) return 'footer';
+  if (link.closest('footer')) return 'footer';
+  return 'body';
+}
+
+/* --- Inquiry Form --- */
+function initInquiryForm() {
+  const form = document.getElementById('inquiry-form');
+  if (!form) return;
+
+  let started = false;
+  form.addEventListener('focusin', () => {
+    if (started) return;
+    started = true;
+    if (typeof gtag !== 'function') return;
+    gtag('event', 'form_start', {
+      form_id: 'inquiry-form',
+      form_name: 'inquiry',
+      form_destination: 'https://flatowfurniture.com/inquiry/thanks/'
+    });
+  });
+
+  const fileInput = document.getElementById('f-photos');
+  const fileHint = document.getElementById('photos-hint');
+  const MAX_BYTES = 8 * 1024 * 1024;
+  if (fileInput && fileHint) {
+    fileInput.addEventListener('change', () => {
+      const total = Array.from(fileInput.files).reduce((sum, f) => sum + f.size, 0);
+      if (total > MAX_BYTES) {
+        const mb = (total / 1024 / 1024).toFixed(1);
+        fileHint.textContent = `Total size is ${mb} MB. The limit is 8 MB — please remove or compress some images, or email them to inquire@flatow.furniture instead.`;
+        fileHint.classList.add('error');
+        fileInput.setCustomValidity('Total file size exceeds 8 MB');
+      } else if (total > 0) {
+        const mb = (total / 1024 / 1024).toFixed(1);
+        fileHint.textContent = `${fileInput.files.length} file${fileInput.files.length === 1 ? '' : 's'} selected, ${mb} MB total.`;
+        fileHint.classList.remove('error');
+        fileInput.setCustomValidity('');
+      } else {
+        fileHint.textContent = '';
+        fileHint.classList.remove('error');
+        fileInput.setCustomValidity('');
+      }
+    });
+  }
+
+  form.addEventListener('submit', () => {
+    if (typeof gtag !== 'function') return;
+    const projectType = form.querySelector('[name="project_type"]')?.value || '';
+    gtag('event', 'form_submit', {
+      form_id: 'inquiry-form',
+      form_name: 'inquiry',
+      form_destination: 'https://flatowfurniture.com/inquiry/thanks/',
+      project_type: projectType
     });
   });
 }

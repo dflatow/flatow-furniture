@@ -11,6 +11,7 @@ Flatow Furniture is a one-person custom furniture studio in Bernal Heights, San 
 - [Design Process](https://flatowfurniture.com/design/): Six-step custom furniture design process from consultation to delivery.
 - [Journal](https://flatowfurniture.com/journal/): Articles on furniture making and craftsmanship.
 - [FAQ](https://flatowfurniture.com/faq/): 29 frequently asked questions covering pricing, materials, timelines, delivery, and care.
+- [Inquiry](https://flatowfurniture.com/inquiry/): Project inquiry form for custom furniture commissions and built-ins. The fastest way to start a new project.
 - [Contact](https://flatowfurniture.com/contact/): Studio location and email for project inquiries.
 
 ## Details

@@ -34,8 +34,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" rel="stylesheet"></noscript>
-  <link rel="preload" as="style" href="css/styles.min.css" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="css/styles.min.css"></noscript>
+  <link rel="preload" as="style" href="css/styles.css" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="css/styles.css"></noscript>
   <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
     @font-face{font-family:'Flatow Hand';src:url('/fonts/FlatowHand-Regular.woff2?v=16') format('woff2');font-weight:100 900;font-style:normal;font-display:swap}@font-face{font-family:'Flatow Hand';src:url('/fonts/FlatowHand-Regular.woff2?v=16') format('woff2');font-weight:100 900;font-style:italic;font-display:swap}
@@ -76,6 +76,7 @@
       <nav class="main-nav" aria-label="Main navigation">
         <a href="#gallery">Gallery</a>
         <a href="/design">Design</a>
+        <a href="/inquiry">Inquiry</a>
         <a href="/about">About</a>
         <a href="/journal">Journal</a>
         <a href="/faq">FAQ</a>
@@ -89,6 +90,7 @@
     <nav class="mobile-nav" aria-label="Mobile navigation">
       <a href="#gallery">Gallery</a>
       <a href="/design">Design</a>
+      <a href="/inquiry">Inquiry</a>
       <a href="/about">About</a>
       <a href="/journal">Journal</a>
       <a href="/faq">FAQ</a>
@@ -427,6 +429,28 @@
     }
   }
   </script>
-  <script src="js/main.min.js"></script>
+  <script src="js/main.js"></script>
+
+  <!--
+    Hidden form for Netlify form detection. This mirrors the field schema of the
+    real form at /inquiry/. Netlify scans HTML at build time; if the real form
+    isn't detected (e.g. because of nesting or post-processing edge cases),
+    this fallback ensures the "inquiry" form is registered so submissions are
+    accepted and stored in the Forms dashboard.
+  -->
+  <form name="inquiry" data-netlify="true" data-netlify-honeypot="bot-field" enctype="multipart/form-data" hidden>
+    <input type="text" name="name">
+    <input type="email" name="email">
+    <input type="tel" name="phone">
+    <input type="radio" name="preferred_contact" value="email">
+    <input type="text" name="city">
+    <select name="project_type"><option label=" "></option></select>
+    <select name="timeline"><option label=" "></option></select>
+    <select name="budget"><option label=" "></option></select>
+    <textarea name="description"></textarea>
+    <input type="file" name="reference_photos">
+    <input type="text" name="referrer_source">
+    <input type="text" name="bot-field">
+  </form>
 </body>
 </html>
