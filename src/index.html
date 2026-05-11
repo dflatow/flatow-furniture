@@ -438,7 +438,7 @@
     this fallback ensures the "inquiry" form is registered so submissions are
     accepted and stored in the Forms dashboard.
   -->
-  <form name="inquiry" data-netlify="true" data-netlify-honeypot="bot-field" enctype="multipart/form-data" hidden>
+  <form name="inquiry" method="POST" action="/inquiry/thanks/" data-netlify="true" data-netlify-honeypot="bot-field" enctype="multipart/form-data" hidden>
     <input type="text" name="name">
     <input type="email" name="email">
     <input type="tel" name="phone">
