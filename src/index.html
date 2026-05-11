@@ -430,5 +430,27 @@
   }
   </script>
   <script src="js/main.js"></script>
+
+  <!--
+    Hidden form for Netlify form detection. This mirrors the field schema of the
+    real form at /inquiry/. Netlify scans HTML at build time; if the real form
+    isn't detected (e.g. because of nesting or post-processing edge cases),
+    this fallback ensures the "inquiry" form is registered so submissions are
+    accepted and stored in the Forms dashboard.
+  -->
+  <form name="inquiry" data-netlify="true" data-netlify-honeypot="bot-field" enctype="multipart/form-data" hidden>
+    <input type="text" name="name">
+    <input type="email" name="email">
+    <input type="tel" name="phone">
+    <input type="radio" name="preferred_contact" value="email">
+    <input type="text" name="city">
+    <select name="project_type"><option></option></select>
+    <select name="timeline"><option></option></select>
+    <select name="budget"><option></option></select>
+    <textarea name="description"></textarea>
+    <input type="file" name="reference_photos">
+    <input type="text" name="referrer_source">
+    <input type="text" name="bot-field">
+  </form>
 </body>
 </html>
