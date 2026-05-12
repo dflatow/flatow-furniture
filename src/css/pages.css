@@ -73,9 +73,14 @@
 }
 
 /* --- Contact Page --- */
-.contact-email {
-  margin: 30px 0;
+.contact-email,
+.contact-phone {
+  margin: 16px 0;
   font-size: 1.1rem;
+}
+
+.contact-email {
+  margin-top: 24px;
 }
 
 .contact-address {
