@@ -377,7 +377,14 @@
       </div>
       <div class="footer-contact">
         <p class="footer-heading">Contact</p>
-        <a href="mailto:inquire@flatow.furniture">inquire@flatow.furniture</a>
+        <div class="footer-reveal-stack">
+          <span class="email-container" data-user="inquire" data-domain="flatow.furniture">
+            <button type="button" class="email-reveal-btn" aria-label="Reveal email address">Show email</button>
+          </span>
+          <span class="phone-container" data-area="415" data-prefix="212" data-line="2751">
+            <button type="button" class="phone-reveal-btn" aria-label="Reveal phone number">Show number</button>
+          </span>
+        </div>
       </div>
     </div>
   </footer>
@@ -398,7 +405,6 @@
     "description": "Custom furniture and built-ins handcrafted in San Francisco by David Flatow.",
     "url": "https://flatowfurniture.com",
     "image": "https://flatowfurniture.com/images/hero-1200w.jpeg",
-    "email": "inquire@flatow.furniture",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "1501 Cortland Ave",

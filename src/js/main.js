@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initReviewsCarousel();
   initSmoothScrollNav();
   initEmailLinkTracking();
+  initEmailReveal();
+  initPhoneReveal();
   initInquiryForm();
 });
 
@@ -124,23 +126,29 @@ function initSmoothScrollNav() {
   });
 }
 
-/* --- Email Link Tracking --- */
+/* --- Email + Phone Link Tracking ---
+   Uses event delegation so links created by the click-to-reveal handlers
+   (which don't exist at DOMContentLoaded time) also get tracked. Fires
+   email_link_click for mailto: links and phone_link_click for tel: links. */
 function initEmailLinkTracking() {
-  const links = document.querySelectorAll('a[href^="mailto:inquire@flatow.furniture"]');
-  links.forEach(link => {
-    link.addEventListener('click', () => {
-      if (typeof gtag !== 'function') return;
-      gtag('event', 'email_link_click', {
-        link_url: 'mailto:inquire@flatow.furniture',
-        link_location: getLinkLocation(link),
-        page_path: location.pathname
-      });
+  document.addEventListener('click', e => {
+    const link = e.target.closest('a[href^="mailto:"], a[href^="tel:"]');
+    if (!link) return;
+    if (typeof gtag !== 'function') return;
+    const isPhone = link.href.startsWith('tel:');
+    gtag('event', isPhone ? 'phone_link_click' : 'email_link_click', {
+      link_url: link.href,
+      link_location: getLinkLocation(link),
+      page_path: location.pathname
     });
   });
 }
 
 function getLinkLocation(link) {
   if (link.dataset.linkLocation) return link.dataset.linkLocation;
+  // Walk up — the reveal container may carry the data attribute
+  const container = link.closest('.email-container');
+  if (container && container.dataset.linkLocation) return container.dataset.linkLocation;
   if (link.closest('.cta-section')) return 'design-cta';
   if (link.closest('.contact-email')) return 'contact-page';
   if (link.closest('.about-text')) return 'about-page';
@@ -149,6 +157,101 @@ function getLinkLocation(link) {
   if (link.closest('.footer-contact')) return 'footer';
   if (link.closest('footer')) return 'footer';
   return 'body';
+}
+
+/* --- Reveal behavioral gate ---
+   For static sites we can't run a real captcha (no backend to verify),
+   but we can defeat ~95% of casual scrapers by requiring a real user
+   interaction + minimum page-dwell before any reveal succeeds. Bots
+   that programmatically .click() without simulating mouse/touch/key
+   activity first get a silent no-op. Real users pass trivially —
+   tab+Enter, mouse hover→click, and touch all fire interaction
+   events before the click handler runs. */
+const REVEAL_GATE = (() => {
+  const pageOpenedAt = Date.now();
+  const MIN_DWELL_MS = 1500;
+  let interacted = false;
+  const SIGNALS = ['mousemove', 'touchstart', 'scroll', 'keydown', 'pointerdown'];
+  SIGNALS.forEach(ev => {
+    document.addEventListener(ev, () => { interacted = true; }, { once: true, passive: true });
+  });
+  return {
+    passes() {
+      return interacted && (Date.now() - pageOpenedAt) >= MIN_DWELL_MS;
+    }
+  };
+})();
+
+/* --- Click-to-Reveal Phone ---
+   Same pattern as email reveal, but for the phone number. Number is
+   split across three data attributes (area / prefix / line) so regex
+   scrapers can't grep for a 10-digit number. On click we assemble it
+   into a tel:+1AAAPPPLLLL link with a (AAA) PPP-LLLL display label
+   and fire a phone_revealed GA4 event. */
+function initPhoneReveal() {
+  document.querySelectorAll('.phone-container').forEach(container => {
+    const btn = container.querySelector('.phone-reveal-btn');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      if (!REVEAL_GATE.passes()) return;
+      const area = container.dataset.area;
+      const prefix = container.dataset.prefix;
+      const line = container.dataset.line;
+      if (!area || !prefix || !line) return;
+      const e164 = '+1' + area + prefix + line;
+      const display = '(' + area + ') ' + prefix + '-' + line;
+      if (typeof gtag === 'function') {
+        gtag('event', 'phone_revealed', {
+          method: 'click_to_reveal',
+          link_location: getLinkLocation(container),
+          page_location: window.location.href
+        });
+      }
+      const link = document.createElement('a');
+      link.href = 'tel:' + e164;
+      link.textContent = display;
+      link.className = 'phone-link';
+      if (container.dataset.linkLocation) {
+        link.dataset.linkLocation = container.dataset.linkLocation;
+      }
+      container.replaceChild(link, btn);
+    });
+  });
+}
+
+/* --- Click-to-Reveal Email ---
+   Bots can't read the address until the user clicks. Fires a GA4
+   email_revealed event so we can track reveal intent alongside the
+   existing email_link_click event (which fires when they actually
+   click the revealed mailto: link to open their mail app). */
+function initEmailReveal() {
+  document.querySelectorAll('.email-container').forEach(container => {
+    const btn = container.querySelector('.email-reveal-btn');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      if (!REVEAL_GATE.passes()) return;
+      const user = container.dataset.user;
+      const domain = container.dataset.domain;
+      if (!user || !domain) return;
+      const email = user + '@' + domain;
+      if (typeof gtag === 'function') {
+        gtag('event', 'email_revealed', {
+          method: 'click_to_reveal',
+          link_location: getLinkLocation(container),
+          page_location: window.location.href
+        });
+      }
+      const link = document.createElement('a');
+      link.href = 'mailto:' + email;
+      link.textContent = email;
+      link.className = 'email-link';
+      // Carry through link_location override if the container had one
+      if (container.dataset.linkLocation) {
+        link.dataset.linkLocation = container.dataset.linkLocation;
+      }
+      container.replaceChild(link, btn);
+    });
+  });
 }
 
 /* --- Inquiry Form --- */
@@ -256,7 +359,7 @@ function initPhotoUpload(form) {
       return;
     }
     if (total > MAX_TOTAL_BYTES) {
-      fileHint.textContent = `${selectedFiles.length} photo${selectedFiles.length === 1 ? '' : 's'} · ${formatSize(total)} total. That's over the 8 MB submission limit — please remove a few or email the rest to inquire@flatow.furniture.`;
+      fileHint.textContent = `${selectedFiles.length} photo${selectedFiles.length === 1 ? '' : 's'} · ${formatSize(total)} total. That's over the 8 MB submission limit — please remove a few photos and try again.`;
       fileHint.classList.add('error');
       fileInput.setCustomValidity('Total file size exceeds 8 MB');
     } else {

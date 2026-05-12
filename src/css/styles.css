@@ -254,6 +254,91 @@ body.menu-open {
   opacity: 0.7;
 }
 
+/* The mailto link created after reveal — wraps long addresses on narrow screens */
+.email-container .email-link {
+  word-break: break-all;
+}
+
+/* --- Click-to-Reveal Email / Phone --- */
+.email-container,
+.phone-container {
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.email-reveal-btn,
+.phone-reveal-btn {
+  /* WCAG 2.5.5 / iOS HIG: 44px min tap target */
+  min-height: 44px;
+  min-width: 44px;
+  padding: 10px 22px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 1rem;
+  color: var(--color-text);
+  background: var(--color-bg-white);
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
+  letter-spacing: 0.02em;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.email-reveal-btn:hover,
+.phone-reveal-btn:hover,
+.email-reveal-btn:focus-visible,
+.phone-reveal-btn:focus-visible {
+  background: #ede7dc;
+  border-color: var(--color-accent);
+}
+
+.email-reveal-btn:focus-visible,
+.phone-reveal-btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.email-reveal-btn:active,
+.phone-reveal-btn:active {
+  background: #e3dcce;
+}
+
+/* On the dark footer background, invert the colors */
+.site-footer .email-reveal-btn,
+.site-footer .phone-reveal-btn {
+  color: var(--color-bg);
+  background: transparent;
+  border-color: rgba(243, 239, 232, 0.4);
+}
+
+.site-footer .email-reveal-btn:hover,
+.site-footer .phone-reveal-btn:hover,
+.site-footer .email-reveal-btn:focus-visible,
+.site-footer .phone-reveal-btn:focus-visible {
+  background: rgba(243, 239, 232, 0.1);
+  border-color: var(--color-bg);
+}
+
+.site-footer .email-reveal-btn:focus-visible,
+.site-footer .phone-reveal-btn:focus-visible {
+  outline-color: var(--color-bg);
+}
+
+/* The tel: link rendered after reveal */
+.phone-container .phone-link {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 400;
+}
+
+/* Footer stacks the email + phone reveal buttons vertically and centers them. */
+.site-footer .footer-reveal-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
 /* --- Section Titles --- */
 .section-title {
   font-weight: 400;
