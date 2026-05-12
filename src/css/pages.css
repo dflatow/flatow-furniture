@@ -843,3 +843,10 @@
     font-size: 1.4rem;
   }
 }
+
+/* Alternative-contact section below the inquiry submit button */
+.inquiry-alt-contact-intro {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--color-border);
+}
