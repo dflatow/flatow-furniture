@@ -331,6 +331,14 @@ body.menu-open {
   font-weight: 400;
 }
 
+/* Footer stacks the email + phone reveal buttons vertically and centers them. */
+.site-footer .footer-reveal-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
 /* --- Section Titles --- */
 .section-title {
   font-weight: 400;

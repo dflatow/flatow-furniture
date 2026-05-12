@@ -159,6 +159,29 @@ function getLinkLocation(link) {
   return 'body';
 }
 
+/* --- Reveal behavioral gate ---
+   For static sites we can't run a real captcha (no backend to verify),
+   but we can defeat ~95% of casual scrapers by requiring a real user
+   interaction + minimum page-dwell before any reveal succeeds. Bots
+   that programmatically .click() without simulating mouse/touch/key
+   activity first get a silent no-op. Real users pass trivially —
+   tab+Enter, mouse hover→click, and touch all fire interaction
+   events before the click handler runs. */
+const REVEAL_GATE = (() => {
+  const pageOpenedAt = Date.now();
+  const MIN_DWELL_MS = 1500;
+  let interacted = false;
+  const SIGNALS = ['mousemove', 'touchstart', 'scroll', 'keydown', 'pointerdown'];
+  SIGNALS.forEach(ev => {
+    document.addEventListener(ev, () => { interacted = true; }, { once: true, passive: true });
+  });
+  return {
+    passes() {
+      return interacted && (Date.now() - pageOpenedAt) >= MIN_DWELL_MS;
+    }
+  };
+})();
+
 /* --- Click-to-Reveal Phone ---
    Same pattern as email reveal, but for the phone number. Number is
    split across three data attributes (area / prefix / line) so regex
@@ -170,6 +193,7 @@ function initPhoneReveal() {
     const btn = container.querySelector('.phone-reveal-btn');
     if (!btn) return;
     btn.addEventListener('click', () => {
+      if (!REVEAL_GATE.passes()) return;
       const area = container.dataset.area;
       const prefix = container.dataset.prefix;
       const line = container.dataset.line;
@@ -205,6 +229,7 @@ function initEmailReveal() {
     const btn = container.querySelector('.email-reveal-btn');
     if (!btn) return;
     btn.addEventListener('click', () => {
+      if (!REVEAL_GATE.passes()) return;
       const user = container.dataset.user;
       const domain = container.dataset.domain;
       if (!user || !domain) return;
