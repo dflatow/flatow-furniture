@@ -76,7 +76,12 @@
       <h1 class="section-title">Project Inquiry</h1>
       <div class="page-body narrow">
         <p>Tell David about your project. The more you share &mdash; dimensions, materials, intended use, references &mdash; the more thoughtfully he can reply.</p>
-        <p>If you'd rather skip the form, email <a href="mailto:inquire@flatow.furniture" class="email-link" data-link-location="inquiry-page-cta">inquire@flatow.furniture</a> directly.</p>
+        <p>If you'd rather skip the form, you can email me directly:</p>
+        <p>
+          <span class="email-container" data-user="inquire" data-domain="flatow.furniture" data-link-location="inquiry-page-cta">
+            <button type="button" class="email-reveal-btn" aria-label="Reveal email address">Show email address</button>
+          </span>
+        </p>
 
         <form name="inquiry"
               id="inquiry-form"
@@ -192,7 +197,9 @@
       </div>
       <div class="footer-contact">
         <p class="footer-heading">Contact</p>
-        <a href="mailto:inquire@flatow.furniture">inquire@flatow.furniture</a>
+        <span class="email-container" data-user="inquire" data-domain="flatow.furniture">
+          <button type="button" class="email-reveal-btn" aria-label="Reveal email address">Show email address</button>
+        </span>
       </div>
     </div>
   </footer>
@@ -206,11 +213,10 @@
     "mainEntity": {
       "@type": "Organization",
       "name": "Flatow Furniture",
-      "email": "inquire@flatow.furniture",
       "contactPoint": {
         "@type": "ContactPoint",
         "contactType": "Sales",
-        "email": "inquire@flatow.furniture",
+        "url": "https://flatowfurniture.com/inquiry/",
         "areaServed": "San Francisco Bay Area"
       }
     }
