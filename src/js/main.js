@@ -168,29 +168,7 @@ function initInquiryForm() {
     });
   });
 
-  const fileInput = document.getElementById('f-photos');
-  const fileHint = document.getElementById('photos-hint');
-  const MAX_BYTES = 8 * 1024 * 1024;
-  if (fileInput && fileHint) {
-    fileInput.addEventListener('change', () => {
-      const total = Array.from(fileInput.files).reduce((sum, f) => sum + f.size, 0);
-      if (total > MAX_BYTES) {
-        const mb = (total / 1024 / 1024).toFixed(1);
-        fileHint.textContent = `Total size is ${mb} MB. The limit is 8 MB — please remove or compress some images, or email them to inquire@flatow.furniture instead.`;
-        fileHint.classList.add('error');
-        fileInput.setCustomValidity('Total file size exceeds 8 MB');
-      } else if (total > 0) {
-        const mb = (total / 1024 / 1024).toFixed(1);
-        fileHint.textContent = `${fileInput.files.length} file${fileInput.files.length === 1 ? '' : 's'} selected, ${mb} MB total.`;
-        fileHint.classList.remove('error');
-        fileInput.setCustomValidity('');
-      } else {
-        fileHint.textContent = '';
-        fileHint.classList.remove('error');
-        fileInput.setCustomValidity('');
-      }
-    });
-  }
+  initPhotoUpload(form);
 
   form.addEventListener('submit', () => {
     if (typeof gtag !== 'function') return;
@@ -201,5 +179,144 @@ function initInquiryForm() {
       form_destination: 'https://flatowfurniture.com/inquiry/thanks/',
       project_type: projectType
     });
+  });
+}
+
+/* --- Photo Upload: client-side compression + previews + remove --- */
+function initPhotoUpload(form) {
+  const fileInput = document.getElementById('f-photos');
+  const previewContainer = document.getElementById('photos-preview');
+  const fileHint = document.getElementById('photos-hint');
+  if (!fileInput || !previewContainer || !fileHint) return;
+
+  const MAX_DIMENSION = 1800;
+  const QUALITY = 0.85;
+  const MAX_TOTAL_BYTES = 8 * 1024 * 1024;
+
+  let selectedFiles = [];
+  let previewUrls = new WeakMap();
+
+  function formatSize(bytes) {
+    if (bytes < 1024) return `${bytes} B`;
+    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(0)} KB`;
+    return `${(bytes / 1024 / 1024).toFixed(1)} MB`;
+  }
+
+  async function compressImage(file) {
+    if (!file.type.startsWith('image/')) return file;
+    let bitmap;
+    try {
+      bitmap = await createImageBitmap(file);
+    } catch (e) {
+      return file;
+    }
+    const { width: w0, height: h0 } = bitmap;
+    const scale = Math.min(1, MAX_DIMENSION / Math.max(w0, h0));
+    if (scale === 1 && file.size < 600 * 1024) {
+      bitmap.close?.();
+      return file;
+    }
+    const width = Math.round(w0 * scale);
+    const height = Math.round(h0 * scale);
+    let canvas;
+    if (typeof OffscreenCanvas !== 'undefined') {
+      canvas = new OffscreenCanvas(width, height);
+    } else {
+      canvas = document.createElement('canvas');
+      canvas.width = width;
+      canvas.height = height;
+    }
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(bitmap, 0, 0, width, height);
+    bitmap.close?.();
+    const blob = canvas.convertToBlob
+      ? await canvas.convertToBlob({ type: 'image/jpeg', quality: QUALITY })
+      : await new Promise(r => canvas.toBlob(r, 'image/jpeg', QUALITY));
+    if (!blob || blob.size >= file.size) return file;
+    const newName = file.name.replace(/\.[^.]+$/, '.jpg');
+    return new File([blob], newName, { type: 'image/jpeg', lastModified: Date.now() });
+  }
+
+  function syncInput() {
+    const dt = new DataTransfer();
+    selectedFiles.forEach(f => dt.items.add(f));
+    fileInput.files = dt.files;
+  }
+
+  function totalBytes() {
+    return selectedFiles.reduce((s, f) => s + f.size, 0);
+  }
+
+  function updateHint() {
+    const total = totalBytes();
+    if (selectedFiles.length === 0) {
+      fileHint.textContent = '';
+      fileHint.classList.remove('error');
+      fileInput.setCustomValidity('');
+      return;
+    }
+    if (total > MAX_TOTAL_BYTES) {
+      fileHint.textContent = `${selectedFiles.length} photo${selectedFiles.length === 1 ? '' : 's'} · ${formatSize(total)} total. That's over the 8 MB submission limit — please remove a few or email the rest to inquire@flatow.furniture.`;
+      fileHint.classList.add('error');
+      fileInput.setCustomValidity('Total file size exceeds 8 MB');
+    } else {
+      fileHint.textContent = `${selectedFiles.length} photo${selectedFiles.length === 1 ? '' : 's'} · ${formatSize(total)} total.`;
+      fileHint.classList.remove('error');
+      fileInput.setCustomValidity('');
+    }
+  }
+
+  function renderPreviews() {
+    previewContainer.innerHTML = '';
+    selectedFiles.forEach((file, index) => {
+      let url = previewUrls.get(file);
+      if (!url) {
+        url = URL.createObjectURL(file);
+        previewUrls.set(file, url);
+      }
+      const item = document.createElement('div');
+      item.className = 'photo-preview';
+      const img = document.createElement('img');
+      img.src = url;
+      img.alt = '';
+      img.loading = 'lazy';
+      const remove = document.createElement('button');
+      remove.type = 'button';
+      remove.className = 'photo-preview-remove';
+      remove.setAttribute('aria-label', `Remove ${file.name}`);
+      remove.textContent = '×';
+      remove.addEventListener('click', () => {
+        URL.revokeObjectURL(url);
+        previewUrls.delete(file);
+        selectedFiles.splice(index, 1);
+        syncInput();
+        renderPreviews();
+        updateHint();
+      });
+      const meta = document.createElement('span');
+      meta.className = 'photo-preview-meta';
+      meta.textContent = formatSize(file.size);
+      item.appendChild(img);
+      item.appendChild(remove);
+      item.appendChild(meta);
+      previewContainer.appendChild(item);
+    });
+  }
+
+  fileInput.addEventListener('change', async () => {
+    const incoming = Array.from(fileInput.files);
+    if (incoming.length === 0) return;
+    fileHint.textContent = `Resizing ${incoming.length} photo${incoming.length === 1 ? '' : 's'}…`;
+    fileHint.classList.remove('error');
+    let processed;
+    try {
+      processed = await Promise.all(incoming.map(compressImage));
+    } catch (e) {
+      processed = incoming;
+    }
+    selectedFiles = selectedFiles.concat(processed);
+    syncInput();
+    renderPreviews();
+    updateHint();
   });
 }

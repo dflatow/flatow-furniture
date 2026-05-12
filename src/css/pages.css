@@ -732,8 +732,81 @@
   line-height: 1.5;
 }
 
+.inquiry-form .form-hint-static {
+  margin-top: 6px;
+  margin-bottom: 0;
+}
+
 .inquiry-form .form-hint.error {
   color: #a52a2a;
+}
+
+/* Photo previews grid */
+.inquiry-form .photo-previews {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 12px;
+}
+
+.inquiry-form .photo-previews:empty {
+  margin-top: 0;
+}
+
+.inquiry-form .photo-preview {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--color-bg-white);
+}
+
+.inquiry-form .photo-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.inquiry-form .photo-preview-remove {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-family: var(--font-body);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.inquiry-form .photo-preview-remove:hover {
+  background: #fff;
+  transform: scale(1.08);
+}
+
+.inquiry-form .photo-preview-meta {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 400;
+  padding: 16px 8px 6px;
+  letter-spacing: 0.02em;
+  text-align: right;
 }
 
 .inquiry-form .form-submit {
