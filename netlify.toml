@@ -27,7 +27,8 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
 
-# Cache static assets for 1 year (immutable content)
+# Images and fonts: long cache OK — content rarely changes and is referenced
+# from many files. If we ever swap a filename, browsers see a new URL.
 [[headers]]
   for = "/images/*"
   [headers.values]
@@ -38,12 +39,17 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# CSS and JS: short cache + revalidate. Filenames don't change between
+# deploys (no-build pipeline), so an immutable 1-year cache would lock
+# users on stale styles.css / main.js forever. With max-age=3600 the
+# browser uses cache for an hour, then sends an If-None-Match for a
+# cheap 304 if nothing changed.
 [[headers]]
   for = "/css/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=3600, must-revalidate"
 
 [[headers]]
   for = "/js/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=3600, must-revalidate"
