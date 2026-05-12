@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothScrollNav();
   initEmailLinkTracking();
   initEmailReveal();
+  initPhoneReveal();
   initInquiryForm();
 });
 
@@ -125,15 +126,17 @@ function initSmoothScrollNav() {
   });
 }
 
-/* --- Email Link Tracking ---
-   Uses event delegation so links created by the click-to-reveal handler
-   (which don't exist at DOMContentLoaded time) also get tracked. */
+/* --- Email + Phone Link Tracking ---
+   Uses event delegation so links created by the click-to-reveal handlers
+   (which don't exist at DOMContentLoaded time) also get tracked. Fires
+   email_link_click for mailto: links and phone_link_click for tel: links. */
 function initEmailLinkTracking() {
   document.addEventListener('click', e => {
-    const link = e.target.closest('a[href^="mailto:"]');
+    const link = e.target.closest('a[href^="mailto:"], a[href^="tel:"]');
     if (!link) return;
     if (typeof gtag !== 'function') return;
-    gtag('event', 'email_link_click', {
+    const isPhone = link.href.startsWith('tel:');
+    gtag('event', isPhone ? 'phone_link_click' : 'email_link_click', {
       link_url: link.href,
       link_location: getLinkLocation(link),
       page_path: location.pathname
@@ -154,6 +157,42 @@ function getLinkLocation(link) {
   if (link.closest('.footer-contact')) return 'footer';
   if (link.closest('footer')) return 'footer';
   return 'body';
+}
+
+/* --- Click-to-Reveal Phone ---
+   Same pattern as email reveal, but for the phone number. Number is
+   split across three data attributes (area / prefix / line) so regex
+   scrapers can't grep for a 10-digit number. On click we assemble it
+   into a tel:+1AAAPPPLLLL link with a (AAA) PPP-LLLL display label
+   and fire a phone_revealed GA4 event. */
+function initPhoneReveal() {
+  document.querySelectorAll('.phone-container').forEach(container => {
+    const btn = container.querySelector('.phone-reveal-btn');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      const area = container.dataset.area;
+      const prefix = container.dataset.prefix;
+      const line = container.dataset.line;
+      if (!area || !prefix || !line) return;
+      const e164 = '+1' + area + prefix + line;
+      const display = '(' + area + ') ' + prefix + '-' + line;
+      if (typeof gtag === 'function') {
+        gtag('event', 'phone_revealed', {
+          method: 'click_to_reveal',
+          link_location: getLinkLocation(container),
+          page_location: window.location.href
+        });
+      }
+      const link = document.createElement('a');
+      link.href = 'tel:' + e164;
+      link.textContent = display;
+      link.className = 'phone-link';
+      if (container.dataset.linkLocation) {
+        link.dataset.linkLocation = container.dataset.linkLocation;
+      }
+      container.replaceChild(link, btn);
+    });
+  });
 }
 
 /* --- Click-to-Reveal Email ---
