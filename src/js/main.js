@@ -271,17 +271,56 @@ function initInquiryForm() {
     });
   });
 
-  initPhotoUpload(form);
+  const photoState = initPhotoUpload(form);
 
-  form.addEventListener('submit', () => {
-    if (typeof gtag !== 'function') return;
-    const projectType = form.querySelector('[name="project_type"]')?.value || '';
-    gtag('event', 'form_submit', {
-      form_id: 'inquiry-form',
-      form_name: 'inquiry',
-      form_destination: 'https://flatowfurniture.com/inquiry/thanks/',
-      project_type: projectType
-    });
+  // Intercept submit so we can build a FormData with the *compressed* file
+  // objects explicitly. Setting fileInput.files via DataTransfer (which the
+  // photo-upload code does) makes the new FileList visible to the DOM but
+  // some browsers — notably Safari — drop those programmatically-assigned
+  // files from native multipart form submission. Building FormData by hand
+  // and POSTing via fetch avoids that quirk entirely.
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+
+    if (typeof gtag === 'function') {
+      const projectType = form.querySelector('[name="project_type"]')?.value || '';
+      gtag('event', 'form_submit', {
+        form_id: 'inquiry-form',
+        form_name: 'inquiry',
+        form_destination: 'https://flatowfurniture.com/inquiry/thanks/',
+        project_type: projectType
+      });
+    }
+
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn ? submitBtn.textContent : '';
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+    }
+
+    try {
+      const formData = new FormData(form);
+      // Replace whatever the browser put in reference_photos (often empty
+      // bytes when the FileList was set programmatically) with our actual
+      // compressed File objects.
+      formData.delete('reference_photos');
+      photoState.files().forEach(f => formData.append('reference_photos', f, f.name));
+
+      const response = await fetch(form.action, { method: 'POST', body: formData });
+      if (response.ok || response.redirected) {
+        window.location.href = form.action;
+      } else {
+        throw new Error('HTTP ' + response.status);
+      }
+    } catch (err) {
+      console.error('Inquiry form submission failed:', err);
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText || 'Send inquiry';
+      }
+      window.alert("Sorry — there was a problem sending your inquiry. Please try again, or use the email/phone buttons below.");
+    }
   });
 }
 
@@ -290,7 +329,9 @@ function initPhotoUpload(form) {
   const fileInput = document.getElementById('f-photos');
   const previewContainer = document.getElementById('photos-preview');
   const fileHint = document.getElementById('photos-hint');
-  if (!fileInput || !previewContainer || !fileHint) return;
+  // Return a getter even if the photo widgets aren't on the page so callers
+  // can always do photoState.files() without a null check.
+  if (!fileInput || !previewContainer || !fileHint) return { files: () => [] };
 
   const MAX_DIMENSION = 1800;
   const QUALITY = 0.85;
@@ -422,4 +463,10 @@ function initPhotoUpload(form) {
     renderPreviews();
     updateHint();
   });
+
+  // Expose a getter so the submit handler can attach the compressed File
+  // objects directly to FormData (bypassing the DataTransfer-set FileList).
+  return {
+    files: () => selectedFiles.slice()
+  };
 }
