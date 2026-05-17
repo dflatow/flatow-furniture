@@ -444,7 +444,7 @@
     this fallback ensures the "inquiry" form is registered so submissions are
     accepted and stored in the Forms dashboard.
   -->
-  <form name="inquiry-v2" method="POST" action="/inquiry/thanks/" data-netlify="true" data-netlify-honeypot="bot-field" enctype="multipart/form-data" hidden>
+  <form name="inquiry-v3" method="POST" action="/inquiry/thanks/" data-netlify="true" data-netlify-honeypot="bot-field" enctype="multipart/form-data" hidden>
     <input type="text" name="name">
     <input type="email" name="email">
     <input type="tel" name="phone">
@@ -454,7 +454,7 @@
     <select name="timeline"><option label=" "></option></select>
     <select name="budget"><option label=" "></option></select>
     <textarea name="description"></textarea>
-    <input type="file" name="reference_photos" multiple>
+    <input type="file" name="reference_photos[]" multiple>
     <input type="text" name="referrer_source">
     <input type="text" name="bot-field">
   </form>

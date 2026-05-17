@@ -304,8 +304,12 @@ function initInquiryForm() {
       // Replace whatever the browser put in reference_photos (often empty
       // bytes when the FileList was set programmatically) with our actual
       // compressed File objects.
+      // Netlify Forms stores multi-file uploads under a field name with []
+      // suffix. Without the suffix, only the first file is stored (and even
+      // that gets silently dropped if the registered schema isn't an array).
       formData.delete('reference_photos');
-      photoState.files().forEach(f => formData.append('reference_photos', f, f.name));
+      formData.delete('reference_photos[]');
+      photoState.files().forEach(f => formData.append('reference_photos[]', f, f.name));
 
       // Debug log — visible in DevTools so we can confirm the files are
       // attached to the FormData before it leaves the browser. Helpful if
