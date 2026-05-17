@@ -34,8 +34,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" rel="stylesheet"></noscript>
-  <link rel="preload" as="style" href="css/styles.css?v=2" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="css/styles.css?v=2"></noscript>
+  <link rel="preload" as="style" href="css/styles.css?v=3" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="css/styles.css?v=3"></noscript>
   <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
     @font-face{font-family:'Flatow Hand';src:url('/fonts/FlatowHand-Regular.woff2?v=16') format('woff2');font-weight:100 900;font-style:normal;font-display:swap}@font-face{font-family:'Flatow Hand';src:url('/fonts/FlatowHand-Regular.woff2?v=16') format('woff2');font-weight:100 900;font-style:italic;font-display:swap}
@@ -435,7 +435,7 @@
     }
   }
   </script>
-  <script src="js/main.js?v=2"></script>
+  <script src="js/main.js?v=3"></script>
 
   <!--
     Hidden form for Netlify form detection. This mirrors the field schema of the
@@ -444,7 +444,7 @@
     this fallback ensures the "inquiry" form is registered so submissions are
     accepted and stored in the Forms dashboard.
   -->
-  <form name="inquiry" method="POST" action="/inquiry/thanks/" data-netlify="true" data-netlify-honeypot="bot-field" enctype="multipart/form-data" hidden>
+  <form name="inquiry-v4" method="POST" action="/inquiry/thanks/" data-netlify="true" data-netlify-honeypot="bot-field" enctype="multipart/form-data" hidden>
     <input type="text" name="name">
     <input type="email" name="email">
     <input type="tel" name="phone">
@@ -454,7 +454,24 @@
     <select name="timeline"><option label=" "></option></select>
     <select name="budget"><option label=" "></option></select>
     <textarea name="description"></textarea>
-    <input type="file" name="reference_photos">
+    <!--
+      Netlify Forms doesn't accept multiple files under a single field name
+      (a single `<input type="file" multiple>` only stores the first file at
+      best; bracket-suffix names get stripped). The workaround is to register
+      N distinct file fields here so Netlify expects each one separately. JS
+      at submit time spreads the user's compressed files across these slots.
+      Bumping to 10 max — plenty for furniture inquiries.
+    -->
+    <input type="file" name="reference_photo_1">
+    <input type="file" name="reference_photo_2">
+    <input type="file" name="reference_photo_3">
+    <input type="file" name="reference_photo_4">
+    <input type="file" name="reference_photo_5">
+    <input type="file" name="reference_photo_6">
+    <input type="file" name="reference_photo_7">
+    <input type="file" name="reference_photo_8">
+    <input type="file" name="reference_photo_9">
+    <input type="file" name="reference_photo_10">
     <input type="text" name="referrer_source">
     <input type="text" name="bot-field">
   </form>
