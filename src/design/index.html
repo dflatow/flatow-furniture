@@ -8,7 +8,10 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
-    gtag('config', 'G-K7C98BWXMM');
+    // Skip analytics on deploy previews, the .netlify.app subdomain, and localhost
+    if (location.hostname === 'flatowfurniture.com' || location.hostname === 'www.flatowfurniture.com') {
+      gtag('config', 'G-K7C98BWXMM');
+    }
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
