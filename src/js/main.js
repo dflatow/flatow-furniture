@@ -307,7 +307,23 @@ function initInquiryForm() {
       formData.delete('reference_photos');
       photoState.files().forEach(f => formData.append('reference_photos', f, f.name));
 
-      const response = await fetch(form.action, { method: 'POST', body: formData });
+      // Debug log — visible in DevTools so we can confirm the files are
+      // attached to the FormData before it leaves the browser. Helpful if
+      // submissions land in Netlify without the photos again.
+      const fileSummary = [];
+      for (const [k, v] of formData.entries()) {
+        if (v instanceof File) fileSummary.push(`${k}=${v.name}(${v.type}, ${v.size}B)`);
+      }
+      console.log('[inquiry] submitting form-name=%s with %d files: %s',
+        formData.get('form-name'), fileSummary.length, fileSummary.join(', '));
+
+      // Netlify Forms expects AJAX submissions to POST to "/" (their
+      // documented pattern). POSTing to the form's action URL works for
+      // text fields but seems to drop file attachments in practice.
+      const response = await fetch('/', { method: 'POST', body: formData });
+      console.log('[inquiry] response status=%d redirected=%s url=%s',
+        response.status, response.redirected, response.url);
+
       if (response.ok || response.redirected) {
         window.location.href = form.action;
       } else {
