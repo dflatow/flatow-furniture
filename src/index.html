@@ -444,7 +444,7 @@
     this fallback ensures the "inquiry" form is registered so submissions are
     accepted and stored in the Forms dashboard.
   -->
-  <form name="inquiry-v3" method="POST" action="/inquiry/thanks/" data-netlify="true" data-netlify-honeypot="bot-field" enctype="multipart/form-data" hidden>
+  <form name="inquiry-v4" method="POST" action="/inquiry/thanks/" data-netlify="true" data-netlify-honeypot="bot-field" enctype="multipart/form-data" hidden>
     <input type="text" name="name">
     <input type="email" name="email">
     <input type="tel" name="phone">
@@ -454,7 +454,24 @@
     <select name="timeline"><option label=" "></option></select>
     <select name="budget"><option label=" "></option></select>
     <textarea name="description"></textarea>
-    <input type="file" name="reference_photos[]" multiple>
+    <!--
+      Netlify Forms doesn't accept multiple files under a single field name
+      (a single `<input type="file" multiple>` only stores the first file at
+      best; bracket-suffix names get stripped). The workaround is to register
+      N distinct file fields here so Netlify expects each one separately. JS
+      at submit time spreads the user's compressed files across these slots.
+      Bumping to 10 max — plenty for furniture inquiries.
+    -->
+    <input type="file" name="reference_photo_1">
+    <input type="file" name="reference_photo_2">
+    <input type="file" name="reference_photo_3">
+    <input type="file" name="reference_photo_4">
+    <input type="file" name="reference_photo_5">
+    <input type="file" name="reference_photo_6">
+    <input type="file" name="reference_photo_7">
+    <input type="file" name="reference_photo_8">
+    <input type="file" name="reference_photo_9">
+    <input type="file" name="reference_photo_10">
     <input type="text" name="referrer_source">
     <input type="text" name="bot-field">
   </form>

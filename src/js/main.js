@@ -304,12 +304,18 @@ function initInquiryForm() {
       // Replace whatever the browser put in reference_photos (often empty
       // bytes when the FileList was set programmatically) with our actual
       // compressed File objects.
-      // Netlify Forms stores multi-file uploads under a field name with []
-      // suffix. Without the suffix, only the first file is stored (and even
-      // that gets silently dropped if the registered schema isn't an array).
-      formData.delete('reference_photos');
-      formData.delete('reference_photos[]');
-      photoState.files().forEach(f => formData.append('reference_photos[]', f, f.name));
+      // Netlify Forms doesn't accept multiple files under a single field
+      // name (single-file works; multi-file silently drops everything;
+      // brackets in the name get stripped). The workaround: register N
+      // distinct file fields in the form's HTML schema (reference_photo_1
+      // through reference_photo_10 in the hidden form on /), then spread
+      // the user's selected files across those slots here at submit time.
+      const MAX_PHOTOS = 10;
+      formData.delete('reference_photos_picker');
+      for (let i = 1; i <= MAX_PHOTOS; i++) formData.delete('reference_photo_' + i);
+      photoState.files().slice(0, MAX_PHOTOS).forEach((f, i) => {
+        formData.append('reference_photo_' + (i + 1), f, f.name);
+      });
 
       // Debug log — visible in DevTools so we can confirm the files are
       // attached to the FormData before it leaves the browser. Helpful if
