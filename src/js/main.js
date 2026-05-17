@@ -362,6 +362,10 @@ function initPhotoUpload(form) {
   const MAX_DIMENSION = 1800;
   const QUALITY = 0.85;
   const MAX_TOTAL_BYTES = 8 * 1024 * 1024;
+  // Mirrors MAX_PHOTOS in the submit handler. Netlify Forms can't store
+  // multiple files per field, so we register 10 distinct file fields in
+  // the hidden form and cap selections at the same number here.
+  const MAX_PHOTOS = 10;
 
   let selectedFiles = [];
   let previewUrls = new WeakMap();
@@ -417,21 +421,22 @@ function initPhotoUpload(form) {
     return selectedFiles.reduce((s, f) => s + f.size, 0);
   }
 
-  function updateHint() {
+  function updateHint(extraNotice) {
     const total = totalBytes();
     if (selectedFiles.length === 0) {
-      fileHint.textContent = '';
-      fileHint.classList.remove('error');
+      fileHint.textContent = extraNotice || '';
+      fileHint.classList.toggle('error', !!extraNotice);
       fileInput.setCustomValidity('');
       return;
     }
+    const base = `${selectedFiles.length} of ${MAX_PHOTOS} photo${selectedFiles.length === 1 ? '' : 's'} · ${formatSize(total)} total.`;
     if (total > MAX_TOTAL_BYTES) {
-      fileHint.textContent = `${selectedFiles.length} photo${selectedFiles.length === 1 ? '' : 's'} · ${formatSize(total)} total. That's over the 8 MB submission limit — please remove a few photos and try again.`;
+      fileHint.textContent = base + " That's over the 8 MB submission limit — please remove a few photos and try again.";
       fileHint.classList.add('error');
       fileInput.setCustomValidity('Total file size exceeds 8 MB');
     } else {
-      fileHint.textContent = `${selectedFiles.length} photo${selectedFiles.length === 1 ? '' : 's'} · ${formatSize(total)} total.`;
-      fileHint.classList.remove('error');
+      fileHint.textContent = extraNotice ? base + ' ' + extraNotice : base;
+      fileHint.classList.toggle('error', !!extraNotice);
       fileInput.setCustomValidity('');
     }
   }
@@ -476,18 +481,36 @@ function initPhotoUpload(form) {
   fileInput.addEventListener('change', async () => {
     const incoming = Array.from(fileInput.files);
     if (incoming.length === 0) return;
-    fileHint.textContent = `Resizing ${incoming.length} photo${incoming.length === 1 ? '' : 's'}…`;
+
+    // Enforce the 10-photo cap before doing the work of compressing.
+    const slotsLeft = Math.max(0, MAX_PHOTOS - selectedFiles.length);
+    const accepted = incoming.slice(0, slotsLeft);
+    const rejectedCount = incoming.length - accepted.length;
+
+    if (accepted.length === 0) {
+      // Already at the cap — nothing to compress
+      updateHint(`Limit is ${MAX_PHOTOS} photos. Remove one to add another.`);
+      // Reset the input so the user can pick again if they remove some
+      fileInput.value = '';
+      return;
+    }
+
+    fileHint.textContent = `Resizing ${accepted.length} photo${accepted.length === 1 ? '' : 's'}…`;
     fileHint.classList.remove('error');
     let processed;
     try {
-      processed = await Promise.all(incoming.map(compressImage));
+      processed = await Promise.all(accepted.map(compressImage));
     } catch (e) {
-      processed = incoming;
+      processed = accepted;
     }
     selectedFiles = selectedFiles.concat(processed);
     syncInput();
     renderPreviews();
-    updateHint();
+    updateHint(rejectedCount > 0
+      ? `${rejectedCount} more not added (limit is ${MAX_PHOTOS}).`
+      : null);
+    // Clear the input value so the user can re-pick the same file later
+    fileInput.value = '';
   });
 
   // Expose a getter so the submit handler can attach the compressed File
