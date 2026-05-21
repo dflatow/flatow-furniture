@@ -91,6 +91,24 @@
 
           <input type="hidden" name="form-name" value="inquiry-v4">
 
+          <!-- Attribution capture (populated by attribution.js) -->
+          <input type="hidden" name="ga_client_id" value="">
+          <input type="hidden" name="ga_session_id" value="">
+          <input type="hidden" name="utm_source" value="">
+          <input type="hidden" name="utm_medium" value="">
+          <input type="hidden" name="utm_campaign" value="">
+          <input type="hidden" name="utm_content" value="">
+          <input type="hidden" name="utm_term" value="">
+          <input type="hidden" name="gclid" value="">
+          <input type="hidden" name="gbraid" value="">
+          <input type="hidden" name="wbraid" value="">
+          <input type="hidden" name="fbclid" value="">
+          <input type="hidden" name="referrer" value="">
+          <input type="hidden" name="landing_page" value="">
+          <input type="hidden" name="landing_timestamp" value="">
+          <input type="hidden" name="submission_page" value="">
+          <input type="hidden" name="submission_timestamp" value="">
+
           <p class="hp-field" aria-hidden="true">
             <label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
           </p>
@@ -247,6 +265,7 @@
     ]
   }
   </script>
+  <script src="/js/attribution.js?v=1"></script>
   <script src="/js/main.js?v=3"></script>
 </body>
 </html>
