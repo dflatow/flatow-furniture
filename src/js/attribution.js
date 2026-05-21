@@ -115,7 +115,11 @@
   function init() {
     captureFirstTouch();
 
-    document.querySelectorAll('form[data-netlify], form[netlify]').forEach(function (form) {
+    // Netlify strips `data-netlify` from rendered HTML after using it for
+    // build-time form detection, so match on the universal Netlify marker
+    // that survives — a hidden input named `form-name`.
+    document.querySelectorAll('form').forEach(function (form) {
+      if (!form.querySelector('input[name="form-name"]')) return;
       populateFormFields(form);
       form.addEventListener('submit', function () {
         populateFormFields(form);
