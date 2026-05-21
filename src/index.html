@@ -448,7 +448,7 @@
     this fallback ensures the "inquiry" form is registered so submissions are
     accepted and stored in the Forms dashboard.
   -->
-  <form name="inquiry-v5" method="POST" action="/inquiry/thanks/" data-netlify="true" data-netlify-honeypot="bot-field" enctype="multipart/form-data" hidden>
+  <form name="inquiry-v6" method="POST" action="/inquiry/thanks/" data-netlify="true" data-netlify-honeypot="bot-field" enctype="multipart/form-data" hidden>
     <input type="text" name="name">
     <input type="email" name="email">
     <input type="tel" name="phone">
@@ -458,22 +458,6 @@
     <select name="timeline"><option label=" "></option></select>
     <select name="budget"><option label=" "></option></select>
     <textarea name="description"></textarea>
-    <input type="hidden" name="ga_client_id">
-    <input type="hidden" name="ga_session_id">
-    <input type="hidden" name="utm_source">
-    <input type="hidden" name="utm_medium">
-    <input type="hidden" name="utm_campaign">
-    <input type="hidden" name="utm_content">
-    <input type="hidden" name="utm_term">
-    <input type="hidden" name="gclid">
-    <input type="hidden" name="gbraid">
-    <input type="hidden" name="wbraid">
-    <input type="hidden" name="fbclid">
-    <input type="hidden" name="referrer">
-    <input type="hidden" name="landing_page">
-    <input type="hidden" name="landing_timestamp">
-    <input type="hidden" name="submission_page">
-    <input type="hidden" name="submission_timestamp">
     <!--
       Netlify Forms doesn't accept multiple files under a single field name
       (a single `<input type="file" multiple>` only stores the first file at
@@ -493,6 +477,25 @@
     <input type="file" name="reference_photo_9">
     <input type="file" name="reference_photo_10">
     <input type="text" name="referrer_source">
+    <!-- Attribution fields (populated by attribution.js) — kept last so they
+         appear at the bottom of the form-notification email, after the
+         user-content fields like reference photos. -->
+    <input type="hidden" name="ga_client_id">
+    <input type="hidden" name="ga_session_id">
+    <input type="hidden" name="utm_source">
+    <input type="hidden" name="utm_medium">
+    <input type="hidden" name="utm_campaign">
+    <input type="hidden" name="utm_content">
+    <input type="hidden" name="utm_term">
+    <input type="hidden" name="gclid">
+    <input type="hidden" name="gbraid">
+    <input type="hidden" name="wbraid">
+    <input type="hidden" name="fbclid">
+    <input type="hidden" name="referrer">
+    <input type="hidden" name="landing_page">
+    <input type="hidden" name="landing_timestamp">
+    <input type="hidden" name="submission_page">
+    <input type="hidden" name="submission_timestamp">
     <input type="text" name="bot-field">
   </form>
 </body>
