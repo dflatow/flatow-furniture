@@ -80,7 +80,7 @@
       <div class="page-body narrow">
         <p>Tell David about your project. The more you share &mdash; dimensions, materials, intended use, references &mdash; the more thoughtfully he can reply.</p>
 
-        <form name="inquiry-v5"
+        <form name="inquiry-v6"
               id="inquiry-form"
               method="POST"
               action="/inquiry/thanks/"
@@ -89,25 +89,7 @@
               enctype="multipart/form-data"
               class="inquiry-form">
 
-          <input type="hidden" name="form-name" value="inquiry-v5">
-
-          <!-- Attribution capture (populated by attribution.js) -->
-          <input type="hidden" name="ga_client_id" value="">
-          <input type="hidden" name="ga_session_id" value="">
-          <input type="hidden" name="utm_source" value="">
-          <input type="hidden" name="utm_medium" value="">
-          <input type="hidden" name="utm_campaign" value="">
-          <input type="hidden" name="utm_content" value="">
-          <input type="hidden" name="utm_term" value="">
-          <input type="hidden" name="gclid" value="">
-          <input type="hidden" name="gbraid" value="">
-          <input type="hidden" name="wbraid" value="">
-          <input type="hidden" name="fbclid" value="">
-          <input type="hidden" name="referrer" value="">
-          <input type="hidden" name="landing_page" value="">
-          <input type="hidden" name="landing_timestamp" value="">
-          <input type="hidden" name="submission_page" value="">
-          <input type="hidden" name="submission_timestamp" value="">
+          <input type="hidden" name="form-name" value="inquiry-v6">
 
           <p class="hp-field" aria-hidden="true">
             <label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
@@ -193,6 +175,24 @@
             <label for="f-source">How did you hear about Flatow Furniture? (optional)</label>
             <input id="f-source" type="text" name="referrer_source" autocomplete="off">
           </div>
+
+          <!-- Attribution capture (populated by attribution.js) -->
+          <input type="hidden" name="ga_client_id" value="">
+          <input type="hidden" name="ga_session_id" value="">
+          <input type="hidden" name="utm_source" value="">
+          <input type="hidden" name="utm_medium" value="">
+          <input type="hidden" name="utm_campaign" value="">
+          <input type="hidden" name="utm_content" value="">
+          <input type="hidden" name="utm_term" value="">
+          <input type="hidden" name="gclid" value="">
+          <input type="hidden" name="gbraid" value="">
+          <input type="hidden" name="wbraid" value="">
+          <input type="hidden" name="fbclid" value="">
+          <input type="hidden" name="referrer" value="">
+          <input type="hidden" name="landing_page" value="">
+          <input type="hidden" name="landing_timestamp" value="">
+          <input type="hidden" name="submission_page" value="">
+          <input type="hidden" name="submission_timestamp" value="">
 
           <button type="submit" class="form-submit">Send inquiry</button>
         </form>
