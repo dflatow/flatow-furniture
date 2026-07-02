@@ -13,6 +13,19 @@
       gtag('config', 'G-K7C98BWXMM');
     }
   </script>
+  <!-- Privacy-friendly analytics by Plausible -->
+  <script>
+    // Skip analytics on deploy previews, the .netlify.app subdomain, and localhost
+    if (location.hostname === 'flatowfurniture.com' || location.hostname === 'www.flatowfurniture.com') {
+      window.plausible = window.plausible || function () { (plausible.q = plausible.q || []).push(arguments) };
+      plausible.init = plausible.init || function (i) { plausible.o = i || {} };
+      var pa = document.createElement('script');
+      pa.async = true;
+      pa.src = 'https://plausible.io/js/pa-E-8bNAuEjSG631Ut1SndX.js';
+      document.head.appendChild(pa);
+      plausible.init();
+    }
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>What's the Difference Between Mass Produced and Handmade Furniture? | Flatow Furniture</title>
