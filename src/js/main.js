@@ -13,6 +13,18 @@ document.addEventListener('DOMContentLoaded', () => {
   initInquiryForm();
 });
 
+/* --- Plausible custom events ---
+   Fires a Plausible goal alongside our GA events. window.plausible is only
+   defined on the production domain (the head snippet is hostname-gated), so
+   on deploy previews / localhost these calls are silent no-ops — same
+   pattern as the `typeof gtag === 'function'` guards below. Props map to
+   Plausible custom properties (e.g. break Email Reveal down by location). */
+function plausibleEvent(name, props) {
+  if (typeof window.plausible === 'function') {
+    window.plausible(name, props ? { props } : undefined);
+  }
+}
+
 /* --- Mobile Menu --- */
 function initMobileMenu() {
   const toggle = document.querySelector('.menu-toggle');
@@ -134,13 +146,16 @@ function initEmailLinkTracking() {
   document.addEventListener('click', e => {
     const link = e.target.closest('a[href^="mailto:"], a[href^="tel:"]');
     if (!link) return;
-    if (typeof gtag !== 'function') return;
     const isPhone = link.href.startsWith('tel:');
-    gtag('event', isPhone ? 'phone_link_click' : 'email_link_click', {
-      link_url: link.href,
-      link_location: getLinkLocation(link),
-      page_path: location.pathname
-    });
+    const linkLocation = getLinkLocation(link);
+    if (typeof gtag === 'function') {
+      gtag('event', isPhone ? 'phone_link_click' : 'email_link_click', {
+        link_url: link.href,
+        link_location: linkLocation,
+        page_path: location.pathname
+      });
+    }
+    plausibleEvent(isPhone ? 'Phone Click' : 'Email Click', { location: linkLocation });
   });
 }
 
@@ -207,6 +222,7 @@ function initPhoneReveal() {
           page_location: window.location.href
         });
       }
+      plausibleEvent('Phone Reveal', { location: getLinkLocation(container) });
       const link = document.createElement('a');
       link.href = 'tel:' + e164;
       link.textContent = display;
@@ -241,6 +257,7 @@ function initEmailReveal() {
           page_location: window.location.href
         });
       }
+      plausibleEvent('Email Reveal', { location: getLinkLocation(container) });
       const link = document.createElement('a');
       link.href = 'mailto:' + email;
       link.textContent = email;
@@ -263,12 +280,14 @@ function initInquiryForm() {
   form.addEventListener('focusin', () => {
     if (started) return;
     started = true;
-    if (typeof gtag !== 'function') return;
-    gtag('event', 'form_start', {
-      form_id: 'inquiry-form',
-      form_name: 'inquiry',
-      form_destination: 'https://flatowfurniture.com/inquiry/thanks/'
-    });
+    if (typeof gtag === 'function') {
+      gtag('event', 'form_start', {
+        form_id: 'inquiry-form',
+        form_name: 'inquiry',
+        form_destination: 'https://flatowfurniture.com/inquiry/thanks/'
+      });
+    }
+    plausibleEvent('Inquiry Start');
   });
 
   const photoState = initPhotoUpload(form);
@@ -282,8 +301,8 @@ function initInquiryForm() {
   form.addEventListener('submit', async e => {
     e.preventDefault();
 
+    const projectType = form.querySelector('[name="project_type"]')?.value || '';
     if (typeof gtag === 'function') {
-      const projectType = form.querySelector('[name="project_type"]')?.value || '';
       gtag('event', 'form_submit', {
         form_id: 'inquiry-form',
         form_name: 'inquiry',
@@ -291,6 +310,10 @@ function initInquiryForm() {
         project_type: projectType
       });
     }
+    // Fires on submit attempt (parity with GA). The /inquiry/thanks/ pageview
+    // goal is the authoritative confirmed-conversion count; this event adds a
+    // project_type breakdown on top of it.
+    plausibleEvent('Inquiry Submit', { project_type: projectType });
 
     const submitBtn = form.querySelector('button[type="submit"]');
     const originalText = submitBtn ? submitBtn.textContent : '';
