@@ -52,6 +52,22 @@
   <link rel="preload" as="image" href="/images/hero-1200w.webp" type="image/webp" imagesrcset="/images/hero-800w.webp 800w, /images/hero-1200w.webp 1200w, /images/hero-1800w.webp 1800w, /images/hero.webp 2500w" imagesizes="100vw" fetchpriority="high">
   <link rel="stylesheet" href="/css/styles.css?v=3">
   <link rel="stylesheet" href="/css/pages.css?v=3">
+  <style>
+    /* Press feature layout — page-specific */
+    .press-feature { display: flex; gap: 44px; align-items: flex-start; }
+    .press-feature-media { flex: 0 0 360px; max-width: 360px; }
+    .press-figure { margin: 0; }
+    .press-figure img { width: 100%; height: auto; display: block; }
+    .press-credit { margin-top: 8px; font-size: 0.8rem; color: var(--color-text-light); letter-spacing: 0.02em; font-style: italic; }
+    .press-feature-body { flex: 1 1 auto; }
+    .press-logo { display: block; width: 190px; height: auto; color: #2c2825; margin-bottom: 20px; }
+    .press-feature .journal-title { margin-top: 2px; }
+    @media (max-width: 700px) {
+      .press-feature { flex-direction: column; gap: 26px; }
+      .press-feature-media { flex-basis: auto; max-width: 420px; width: 100%; }
+      .press-logo { width: 160px; }
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -93,13 +109,28 @@
     <section class="page-content">
       <h1 class="section-title">Press</h1>
       <div class="journal-grid">
-        <article class="journal-entry">
-          <div class="journal-meta">
-            <span class="journal-date">Remodelista &middot; July 8, 2026</span>
+        <article class="journal-entry press-feature">
+          <div class="press-feature-media">
+            <figure class="press-figure">
+              <picture>
+                <source srcset="/images/press/sommer-remodelista-400w.webp 400w, /images/press/sommer-remodelista-800w.webp 800w, /images/press/sommer-remodelista-1200w.webp 1200w" sizes="(max-width: 700px) 100vw, 360px" type="image/webp">
+                <img src="/images/press/sommer-remodelista-800w.jpg" alt="Cherry center table and counter built by Flatow Furniture in the Sommer shop in Hayes Valley, San Francisco" loading="lazy" srcset="/images/press/sommer-remodelista-400w.jpg 400w, /images/press/sommer-remodelista-800w.jpg 800w, /images/press/sommer-remodelista-1200w.jpg 1200w" sizes="(max-width: 700px) 100vw, 360px" width="1466" height="1955">
+              </picture>
+              <figcaption class="press-credit">Photo: Eli Blanton for Sommer</figcaption>
+            </figure>
           </div>
-          <h2 class="journal-title">The Feeling of Home: Sommer in San Francisco</h2>
-          <p class="journal-excerpt">Writer Alexa Hotz tours Sommer&rsquo;s new Hayes Valley shop for Remodelista&rsquo;s &ldquo;The Feeling of Home&rdquo; series &mdash; where the desk counter, center table, and entry bench are custom Flatow Furniture pieces, built in cherry and finished in a clear hardwax oil.</p>
-          <a href="https://www.remodelista.com/posts/the-feeling-of-home-sommer-san-francisco/" class="read-more" target="_blank" rel="noopener">Read the feature on Remodelista &rarr;</a>
+          <div class="press-feature-body">
+            <svg class="press-logo" viewBox="0 0 420 84" role="img" aria-label="Remodelista" xmlns="http://www.w3.org/2000/svg">
+              <text x="210" y="50" text-anchor="middle" textLength="416" lengthAdjust="spacingAndGlyphs" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="52" fill="currentColor">REMODELISTA</text>
+              <rect x="2" y="64" width="416" height="8" fill="currentColor"></rect>
+            </svg>
+            <div class="journal-meta">
+              <span class="journal-date">July 8, 2026</span>
+            </div>
+            <h2 class="journal-title">The Feeling of Home: Sommer in San Francisco</h2>
+            <p class="journal-excerpt">Writer Alexa Hotz tours Sommer&rsquo;s new Hayes Valley shop for Remodelista&rsquo;s &ldquo;The Feeling of Home&rdquo; series &mdash; where the desk counter, center table, and entry bench are custom Flatow Furniture pieces, built in cherry and finished in a clear hardwax oil.</p>
+            <a href="https://www.remodelista.com/posts/the-feeling-of-home-sommer-san-francisco/" class="read-more" target="_blank" rel="noopener">Read the feature on Remodelista &rarr;</a>
+          </div>
         </article>
       </div>
     </section>
