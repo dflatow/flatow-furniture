@@ -11,12 +11,6 @@
     // Skip analytics on deploy previews, the .netlify.app subdomain, and localhost
     if (location.hostname === 'flatowfurniture.com' || location.hostname === 'www.flatowfurniture.com') {
       gtag('config', 'G-K7C98BWXMM');
-      gtag('event', 'generate_lead', {
-        form_id: 'inquiry-form',
-        form_name: 'inquiry',
-        currency: 'USD',
-        value: 0
-      });
     }
   </script>
   <meta charset="UTF-8">
@@ -34,18 +28,28 @@
     }
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex">
-  <title>Thanks for your inquiry | Flatow Furniture</title>
-  <meta name="description" content="Thanks for reaching out to Flatow Furniture. David will reply within a couple of business days.">
+  <title>Press | Flatow Furniture</title>
+  <meta name="description" content="Press and features on Flatow Furniture — custom furniture and built-ins handmade in San Francisco.">
   <link rel="icon" type="image/x-icon" href="/images/favicon/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
-  <link rel="canonical" href="https://flatowfurniture.com/inquiry/thanks/">
+  <link rel="canonical" href="https://flatowfurniture.com/press/">
+  <meta property="og:title" content="Press | Flatow Furniture">
+  <meta property="og:description" content="Press and features on Flatow Furniture — custom furniture and built-ins handmade in San Francisco.">
+  <meta property="og:image" content="https://flatowfurniture.com/images/hero-1200w.jpeg">
+  <meta property="og:url" content="https://flatowfurniture.com/press/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Flatow Furniture">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Press | Flatow Furniture">
+  <meta name="twitter:description" content="Press and features on Flatow Furniture — custom furniture and built-ins handmade in San Francisco.">
+  <meta name="twitter:image" content="https://flatowfurniture.com/images/hero-1200w.jpeg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" rel="stylesheet"></noscript>
+  <link rel="preload" as="image" href="/images/hero-1200w.webp" type="image/webp" imagesrcset="/images/hero-800w.webp 800w, /images/hero-1200w.webp 1200w, /images/hero-1800w.webp 1800w, /images/hero.webp 2500w" imagesizes="100vw" fetchpriority="high">
   <link rel="stylesheet" href="/css/styles.css?v=3">
   <link rel="stylesheet" href="/css/pages.css?v=3">
 </head>
@@ -61,7 +65,7 @@
         <a href="/inquiry">Inquiry</a>
         <a href="/about">About</a>
         <a href="/journal">Journal</a>
-        <a href="/press">Press</a>
+        <a href="/press" class="active">Press</a>
         <a href="/faq">FAQ</a>
         <a href="/contact">Contact</a>
       </nav>
@@ -75,7 +79,7 @@
       <a href="/inquiry">Inquiry</a>
       <a href="/about">About</a>
       <a href="/journal">Journal</a>
-      <a href="/press">Press</a>
+      <a href="/press" class="active">Press</a>
       <a href="/faq">FAQ</a>
       <a href="/contact">Contact</a>
     </nav>
@@ -83,26 +87,20 @@
 
   <main id="page">
     <section class="page-hero">
-      <picture><source srcset="/images/hero-800w.webp 800w, /images/hero-1200w.webp 1200w, /images/hero-1800w.webp 1800w, /images/hero.webp 2500w" sizes="100vw" type="image/webp"><img src="/images/hero.jpeg" alt="Flatow Furniture workshop" class="page-hero-image" srcset="/images/hero-800w.jpeg 800w, /images/hero-1200w.jpeg 1200w, /images/hero-1800w.jpeg 1800w, /images/hero.jpeg 2500w" sizes="100vw" width="2500" height="1667"></picture>
+      <picture><source srcset="/images/hero-800w.webp 800w, /images/hero-1200w.webp 1200w, /images/hero-1800w.webp 1800w, /images/hero.webp 2500w" sizes="100vw" type="image/webp"><img src="/images/hero.jpeg" alt="Custom white oak and cherry dining table by Flatow Furniture" class="page-hero-image" fetchpriority="high" srcset="/images/hero-800w.jpeg 800w, /images/hero-1200w.jpeg 1200w, /images/hero-1800w.jpeg 1800w, /images/hero.jpeg 2500w" sizes="100vw" width="2500" height="1667"></picture>
     </section>
 
     <section class="page-content">
-      <h1 class="section-title">Thanks for reaching out</h1>
-      <div class="page-body narrow">
-        <p>David received your inquiry and will reply within a couple of business days.</p>
-        <p>If you don't see a reply by then, check your spam folder &mdash; you can also reach me directly by email:</p>
-        <p>
-          <span class="email-container" data-user="inquire" data-domain="flatow.furniture" data-link-location="thanks-page">
-            <button type="button" class="email-reveal-btn" aria-label="Reveal email address">Show email</button>
-          </span>
-        </p>
-        <p>Text or call me at:</p>
-        <p>
-          <span class="phone-container" data-area="415" data-prefix="212" data-line="2751" data-link-location="thanks-page">
-            <button type="button" class="phone-reveal-btn" aria-label="Reveal phone number">Show number</button>
-          </span>
-        </p>
-        <p>While you wait, you might enjoy <a href="/#gallery" class="email-link">browsing the gallery</a> or <a href="/journal" class="email-link">reading the journal</a>.</p>
+      <h1 class="section-title">Press</h1>
+      <div class="journal-grid">
+        <article class="journal-entry">
+          <div class="journal-meta">
+            <span class="journal-date">Remodelista &middot; July 2026</span>
+          </div>
+          <h2 class="journal-title">The Feeling of Home: Sommer in San Francisco</h2>
+          <p class="journal-excerpt">Writer Alexa Hotz visits a San Francisco home for Remodelista's &ldquo;The Feeling of Home&rdquo; series &mdash; a space where a Flatow Furniture piece finds its place.</p>
+          <a href="https://www.remodelista.com/posts/the-feeling-of-home-sommer-san-francisco/" class="read-more" target="_blank" rel="noopener">Read the feature on Remodelista &rarr;</a>
+        </article>
       </div>
     </section>
   </main>
@@ -131,6 +129,16 @@
     </div>
   </footer>
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://flatowfurniture.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Press" }
+    ]
+  }
+  </script>
   <script src="/js/attribution.js?v=2"></script>
   <script src="/js/main.js?v=4"></script>
 </body>
