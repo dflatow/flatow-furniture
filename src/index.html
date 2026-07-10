@@ -85,7 +85,9 @@
     .press-home-image img{display:block;width:100%;height:auto}
     .press-home-badge{position:absolute;top:32px;left:32px;padding-bottom:9px;border-bottom:3px solid #383842;line-height:0}
     .press-home-badge img{display:block;width:180px;height:auto}
-    .press-home-link{align-self:flex-start;margin-top:20px;font-size:0.9rem;text-decoration:underline;text-underline-offset:3px;transition:opacity 0.3s ease}
+    .press-home-link{align-self:flex-start;margin-top:20px;display:inline-flex;align-items:center;gap:8px;font-size:0.9rem;transition:opacity 0.3s ease}
+    .press-home-link span{text-decoration:underline;text-underline-offset:3px}
+    .press-home-link svg{width:15px;height:15px;flex-shrink:0}
     .press-home-link:hover{opacity:0.7}
     @media(max-width:900px){.press-home{grid-template-columns:1fr}.press-home-badge{top:20px;left:20px}.press-home-badge img{width:150px}}
   </style>
@@ -307,7 +309,7 @@
       <div class="gallery-feature-info">
         <h2>My work in Remodelista</h2>
         <p>Remodelista featured the cherry counter, table, and bench I built for Sommer&rsquo;s new shop in Hayes Valley.</p>
-        <a class="press-home-link" href="/press">Read the feature &rarr;</a>
+        <a class="press-home-link" href="/press"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg><span>Read the feature</span></a>
       </div>
     </section>
 
