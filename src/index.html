@@ -80,13 +80,17 @@
     .hero-image{width:100%;height:100%;object-fit:cover;object-position:center}
     @media(max-width:900px){.main-nav{display:none}.menu-toggle{display:block}.site-header{padding:30px 24px 16px}}
     @media(max-width:600px){.hero{height:60vh}.header-inner{justify-content:center}.logo-link{position:static}.logo{height:60px}}
-    .featured-in{display:flex;align-items:center;justify-content:center;gap:22px;max-width:1000px;margin:0 auto;padding:56px 40px}
-    .featured-in-thumb{width:52px;height:68px;object-fit:cover;border-radius:3px;flex-shrink:0;transition:opacity 0.3s ease}
-    .featured-in-text{display:flex;flex-direction:column;gap:7px}
-    .featured-in-label{font-family:var(--font-body);font-size:0.72rem;font-weight:400;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-light)}
-    .featured-in-logo{width:150px;height:auto;transition:opacity 0.3s ease}
-    .featured-in:hover .featured-in-logo,.featured-in:hover .featured-in-thumb{opacity:0.7}
-    @media(max-width:600px){.featured-in{gap:16px;padding:40px 24px}.featured-in-logo{width:126px}.featured-in-thumb{width:46px;height:60px}}
+    .press-home{display:grid;grid-template-columns:1fr 1fr;background:var(--color-bg)}
+    .press-home-image{display:block;position:relative;overflow:hidden;min-height:70vh}
+    .press-home-image img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 0.6s ease}
+    .press-home-image:hover img{transform:scale(1.03)}
+    .press-home-info{display:flex;flex-direction:column;justify-content:center;gap:24px;padding:60px 60px}
+    .press-home-logo{width:190px;height:auto}
+    .press-home-info h2{font-family:var(--font-body);font-weight:400;font-style:normal;font-size:clamp(1.7rem,2.8vw,2.4rem);line-height:1.2;color:var(--color-text)}
+    .press-home-info p{font-size:1.05rem;line-height:1.8;color:var(--color-text);max-width:40ch}
+    .press-home-link{align-self:flex-start;font-size:0.95rem;text-decoration:underline;text-underline-offset:3px;transition:opacity 0.3s ease}
+    .press-home-link:hover{opacity:0.7}
+    @media(max-width:900px){.press-home{grid-template-columns:1fr}.press-home-image{min-height:0;aspect-ratio:4/5}.press-home-info{padding:44px 24px;gap:20px}}
   </style>
 </head>
 <body>
@@ -294,17 +298,21 @@
 
     </section>
 
-    <!-- As Featured In -->
-    <a href="/press" class="featured-in" aria-label="Featured in Remodelista — read the feature">
-      <picture>
-        <source srcset="images/press/sommer-remodelista-400w.webp" type="image/webp">
-        <img class="featured-in-thumb" src="images/press/sommer-remodelista-400w.jpg" alt="Flatow Furniture cherry pieces in the Sommer shop, featured by Remodelista" width="400" height="533" loading="lazy">
-      </picture>
-      <span class="featured-in-text">
-        <span class="featured-in-label">As featured in</span>
-        <img class="featured-in-logo" src="images/press/remodelista-logo.svg" alt="Remodelista" width="342" height="32" loading="lazy">
-      </span>
-    </a>
+    <!-- My work in Remodelista -->
+    <section class="press-home">
+      <a class="press-home-image" href="/press" aria-label="My work in Remodelista — read the feature">
+        <picture>
+          <source srcset="images/press/sommer-remodelista-400w.webp 400w, images/press/sommer-remodelista-800w.webp 800w, images/press/sommer-remodelista-1200w.webp 1200w" sizes="(max-width: 900px) 100vw, 50vw" type="image/webp">
+          <img src="images/press/sommer-remodelista-800w.jpg" alt="Cherry counter, table, and bench built by Flatow Furniture in the Sommer shop in Hayes Valley, San Francisco" loading="lazy" srcset="images/press/sommer-remodelista-400w.jpg 400w, images/press/sommer-remodelista-800w.jpg 800w, images/press/sommer-remodelista-1200w.jpg 1200w" sizes="(max-width: 900px) 100vw, 50vw" width="1466" height="1955">
+        </picture>
+      </a>
+      <div class="press-home-info">
+        <img class="press-home-logo" src="images/press/remodelista-logo.svg" alt="Remodelista" width="342" height="32" loading="lazy">
+        <h2>My work in Remodelista</h2>
+        <p>Remodelista featured the cherry counter, table, and bench I built for Sommer&rsquo;s new shop in Hayes Valley.</p>
+        <a class="press-home-link" href="/press">Read the feature &rarr;</a>
+      </div>
+    </section>
 
     <!-- Reviews Section -->
     <section class="reviews">
