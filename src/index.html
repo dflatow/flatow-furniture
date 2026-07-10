@@ -80,6 +80,13 @@
     .hero-image{width:100%;height:100%;object-fit:cover;object-position:center}
     @media(max-width:900px){.main-nav{display:none}.menu-toggle{display:block}.site-header{padding:30px 24px 16px}}
     @media(max-width:600px){.hero{height:60vh}.header-inner{justify-content:center}.logo-link{position:static}.logo{height:60px}}
+    .featured-in{display:flex;align-items:center;justify-content:center;gap:22px;max-width:1000px;margin:0 auto;padding:56px 40px}
+    .featured-in-thumb{width:52px;height:68px;object-fit:cover;border-radius:3px;flex-shrink:0;transition:opacity 0.3s ease}
+    .featured-in-text{display:flex;flex-direction:column;gap:7px}
+    .featured-in-label{font-family:var(--font-body);font-size:0.72rem;font-weight:400;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-light)}
+    .featured-in-logo{width:150px;height:auto;transition:opacity 0.3s ease}
+    .featured-in:hover .featured-in-logo,.featured-in:hover .featured-in-thumb{opacity:0.7}
+    @media(max-width:600px){.featured-in{gap:16px;padding:40px 24px}.featured-in-logo{width:126px}.featured-in-thumb{width:46px;height:60px}}
   </style>
 </head>
 <body>
@@ -286,6 +293,18 @@
       </div>
 
     </section>
+
+    <!-- As Featured In -->
+    <a href="/press" class="featured-in" aria-label="Featured in Remodelista — read the feature">
+      <picture>
+        <source srcset="images/press/sommer-remodelista-400w.webp" type="image/webp">
+        <img class="featured-in-thumb" src="images/press/sommer-remodelista-400w.jpg" alt="Flatow Furniture cherry pieces in the Sommer shop, featured by Remodelista" width="400" height="533" loading="lazy">
+      </picture>
+      <span class="featured-in-text">
+        <span class="featured-in-label">As featured in</span>
+        <img class="featured-in-logo" src="images/press/remodelista-logo.svg" alt="Remodelista" width="342" height="32" loading="lazy">
+      </span>
+    </a>
 
     <!-- Reviews Section -->
     <section class="reviews">
