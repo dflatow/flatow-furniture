@@ -28,30 +28,46 @@
     }
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Journal | Flatow Furniture</title>
-  <meta name="description" content="Thoughts on furniture making, craftsmanship, and custom woodworking from Flatow Furniture in San Francisco.">
+  <title>Press | Flatow Furniture</title>
+  <meta name="description" content="Press and features on Flatow Furniture — custom furniture and built-ins handmade in San Francisco.">
   <link rel="icon" type="image/x-icon" href="/images/favicon/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
-  <link rel="canonical" href="https://flatowfurniture.com/journal/">
-  <meta property="og:title" content="Journal | Flatow Furniture">
-  <meta property="og:description" content="Thoughts on furniture making, craftsmanship, and custom woodworking from Flatow Furniture in San Francisco.">
+  <link rel="canonical" href="https://flatowfurniture.com/press/">
+  <meta property="og:title" content="Press | Flatow Furniture">
+  <meta property="og:description" content="Press and features on Flatow Furniture — custom furniture and built-ins handmade in San Francisco.">
   <meta property="og:image" content="https://flatowfurniture.com/images/hero-1200w.jpeg">
-  <meta property="og:url" content="https://flatowfurniture.com/journal/">
+  <meta property="og:url" content="https://flatowfurniture.com/press/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Flatow Furniture">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Journal | Flatow Furniture">
-  <meta name="twitter:description" content="Thoughts on furniture making, craftsmanship, and custom woodworking from Flatow Furniture.">
+  <meta name="twitter:title" content="Press | Flatow Furniture">
+  <meta name="twitter:description" content="Press and features on Flatow Furniture — custom furniture and built-ins handmade in San Francisco.">
   <meta name="twitter:image" content="https://flatowfurniture.com/images/hero-1200w.jpeg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" rel="stylesheet"></noscript>
-  <link rel="preload" as="image" href="/images/about/david-portrait-800w.webp" type="image/webp" imagesrcset="/images/about/david-portrait-400w.webp 400w, /images/about/david-portrait-800w.webp 800w, /images/about/david-portrait.webp 1500w" imagesizes="100vw" fetchpriority="high">
+  <link rel="preload" as="image" href="/images/hero-1200w.webp" type="image/webp" imagesrcset="/images/hero-800w.webp 800w, /images/hero-1200w.webp 1200w, /images/hero-1800w.webp 1800w, /images/hero.webp 2500w" imagesizes="100vw" fetchpriority="high">
   <link rel="stylesheet" href="/css/styles.css?v=3">
   <link rel="stylesheet" href="/css/pages.css?v=3">
+  <style>
+    /* Press feature layout — page-specific */
+    .press-feature { display: flex; gap: 44px; align-items: flex-start; }
+    .press-feature-media { flex: 0 0 360px; max-width: 360px; }
+    .press-figure { margin: 0; }
+    .press-figure img { width: 100%; height: auto; display: block; }
+    .press-credit { margin-top: 8px; font-size: 0.8rem; color: var(--color-text-light); letter-spacing: 0.02em; font-style: italic; }
+    .press-feature-body { flex: 1 1 auto; }
+    .press-logo { display: block; width: 190px; height: auto; margin-bottom: 20px; }
+    .press-feature .journal-title { margin-top: 2px; }
+    @media (max-width: 700px) {
+      .press-feature { flex-direction: column; gap: 26px; }
+      .press-feature-media { flex-basis: auto; max-width: 420px; width: 100%; }
+      .press-logo { width: 160px; }
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -64,8 +80,8 @@
         <a href="/design">Design</a>
         <a href="/inquiry">Inquiry</a>
         <a href="/about">About</a>
-        <a href="/journal" class="active">Journal</a>
-        <a href="/press">Press</a>
+        <a href="/journal">Journal</a>
+        <a href="/press" class="active">Press</a>
         <a href="/faq">FAQ</a>
         <a href="/contact">Contact</a>
       </nav>
@@ -78,8 +94,8 @@
       <a href="/design">Design</a>
       <a href="/inquiry">Inquiry</a>
       <a href="/about">About</a>
-      <a href="/journal" class="active">Journal</a>
-      <a href="/press">Press</a>
+      <a href="/journal">Journal</a>
+      <a href="/press" class="active">Press</a>
       <a href="/faq">FAQ</a>
       <a href="/contact">Contact</a>
     </nav>
@@ -87,19 +103,31 @@
 
   <main id="page">
     <section class="page-hero">
-      <picture><source srcset="/images/about/david-portrait-400w.webp 400w, /images/about/david-portrait-800w.webp 800w, /images/about/david-portrait.webp 1500w" sizes="100vw" type="image/webp"><img src="/images/about/david-portrait.jpeg" alt="David Flatow in his workshop" class="page-hero-image" srcset="/images/about/david-portrait-400w.jpeg 400w, /images/about/david-portrait-800w.jpeg 800w, /images/about/david-portrait.jpeg 1500w" sizes="100vw" width="1500" height="1000"></picture>
+      <picture><source srcset="/images/hero-800w.webp 800w, /images/hero-1200w.webp 1200w, /images/hero-1800w.webp 1800w, /images/hero.webp 2500w" sizes="100vw" type="image/webp"><img src="/images/hero.jpeg" alt="Custom white oak and cherry dining table by Flatow Furniture" class="page-hero-image" fetchpriority="high" srcset="/images/hero-800w.jpeg 800w, /images/hero-1200w.jpeg 1200w, /images/hero-1800w.jpeg 1800w, /images/hero.jpeg 2500w" sizes="100vw" width="2500" height="1667"></picture>
     </section>
 
     <section class="page-content">
-      <h1 class="section-title">Notes from the Workshop</h1>
+      <h1 class="section-title">Press</h1>
       <div class="journal-grid">
-        <article class="journal-entry">
-          <div class="journal-meta">
-            <span class="journal-date">David Flatow &middot; 1/21/26</span>
+        <article class="journal-entry press-feature">
+          <div class="press-feature-media">
+            <figure class="press-figure">
+              <picture>
+                <source srcset="/images/press/sommer-remodelista-400w.webp 400w, /images/press/sommer-remodelista-800w.webp 800w, /images/press/sommer-remodelista-1200w.webp 1200w" sizes="(max-width: 700px) 100vw, 360px" type="image/webp">
+                <img src="/images/press/sommer-remodelista-800w.jpg" alt="Cherry center table and counter built by Flatow Furniture in the Sommer shop in Hayes Valley, San Francisco" loading="lazy" srcset="/images/press/sommer-remodelista-400w.jpg 400w, /images/press/sommer-remodelista-800w.jpg 800w, /images/press/sommer-remodelista-1200w.jpg 1200w" sizes="(max-width: 700px) 100vw, 360px" width="1466" height="1955">
+              </picture>
+              <figcaption class="press-credit">Photo: Eli Blanton for Sommer</figcaption>
+            </figure>
           </div>
-          <h2 class="journal-title">What's the difference between mass produced and handmade furniture?</h2>
-          <p class="journal-excerpt">People often pay premium prices for manufactured furniture, only to deal with loose joints, warped panels, and endless customer service emails. Here's what I've learned from building handmade furniture &ndash; and why the difference matters.</p>
-          <a href="/journal/whats-the-difference-between-mass-produced-and-handmade-furniture" class="read-more">Read More &rarr;</a>
+          <div class="press-feature-body">
+            <img class="press-logo" src="/images/press/remodelista-logo.svg" alt="Remodelista" width="342" height="32" loading="lazy">
+            <div class="journal-meta">
+              <span class="journal-date">July 8, 2026</span>
+            </div>
+            <h2 class="journal-title">The Feeling of Home: Sommer in San Francisco</h2>
+            <p class="journal-excerpt">Writer Alexa Hotz tours Sommer&rsquo;s new Hayes Valley shop for Remodelista&rsquo;s &ldquo;The Feeling of Home&rdquo; series &mdash; where the desk counter, center table, and entry bench are custom Flatow Furniture pieces, built in cherry and finished in a clear hardwax oil.</p>
+            <a href="https://www.remodelista.com/posts/the-feeling-of-home-sommer-san-francisco/" class="read-more" target="_blank" rel="noopener">Read the feature on Remodelista &rarr;</a>
+          </div>
         </article>
       </div>
     </section>
@@ -135,7 +163,7 @@
     "@type": "BreadcrumbList",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://flatowfurniture.com/" },
-      { "@type": "ListItem", "position": 2, "name": "Journal" }
+      { "@type": "ListItem", "position": 2, "name": "Press" }
     ]
   }
   </script>
